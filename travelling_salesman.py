@@ -195,14 +195,14 @@ crobot.removeJoints(removedJoints, qneutral)
 del crobot
 robot.insertRobotSRDFModel("tiago", "package://tiago_data/srdf/tiago.srdf")
 robot.insertRobotSRDFModel("tiago", "package://tiago_data/srdf/pal_hey5_gripper.srdf")
-robot.setJointBounds('tiago/root_joint', [-5, 5, -5, 5])
+robot.setJointBounds('tiago/root_joint', [-3, 3, -3, 3])
 ps = ProblemSolver(robot)
 ps.loadPlugin("manipulation-spline-gradient-based.so")
 vf = ViewerFactory(ps)
 
 vf.loadRobotModel (Driller, "driller")
 robot.insertRobotSRDFModel("driller", "package://gerard_bauzil/srdf/qr_drill.srdf")
-robot.setJointBounds('driller/root_joint', [-5, 5, -5, 5, 0, 2])
+robot.setJointBounds('driller/root_joint', [-3, 3, -3, 3, 0, 2])
 vf.loadRobotModel (PartP72, "part")
 #vf.loadRobotModel (Part, "part")
 robot.setJointBounds('part/root_joint', [-2, 2, -2, 2, -2, 2])
@@ -846,7 +846,9 @@ del pathVal
 
 basePlanner = InStatePlanner ()
 basePlanner.plannerType = "kPRM*"
-basePlanner.optimizerTypes.append("RandomShortcut")
+basePlanner.maxIterPathPlanning = 100000
+basePlanner.optimizerTypes = list()
+basePlanner.parameters['kPRM*/numberOfNodes'] = 1000
 basePlanner.setEdge("move_base")
 basePlanner.setReedsAndSheppSteeringMethod()
 
@@ -881,8 +883,6 @@ if basePlannerUsePrecomputedRoadmap:
         print("Writing mobile base roadmap", roadmap_file)
         basePlanner.writeRoadmap(roadmap_file)
 
-basePlanner.plannerType = "DiffusingPlanner"
-basePlanner.maxIterPathPlanning = 1000
 # 3}}}
 
 # {{{3 Find handle clusters and solve TSP for each clusters.
