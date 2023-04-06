@@ -130,35 +130,7 @@ client.manipulation.problem.selectProblem (args.context)
 robot = Robot("robot", "tiago", rootJointType="planar", client=client)
 crobot = robot.hppcorba.problem.getProblem().robot()
 
-from tiago_fov import TiagoFOV, TiagoFOVGuiCallback
 from hpp import Transform
-tiago_fov = TiagoFOV(urdfString = Robot.urdfString,
-        # Real field of view angles are (49.5, 60),
-        fov = np.radians((44.5, 55)),
-        geoms = [ "arm_3_link_0" ])
-class Tag:
-    def __init__(self, n, s):
-        self.name = n
-        self.size = s
-class Tags:
-    def __init__(self, tags, n_visibility_thr, size_margin):
-        self.tags = tags
-        self.n_visibility_thr = n_visibility_thr
-        self.size_margin = size_margin
-    @property
-    def names(self):
-        return [ t.name for t in self.tags ]
-    @property
-    def sizes(self):
-        return [ t.size for t in self.tags ]
-tagss = [
-        Tags([ Tag('driller/tag36_11_00230', 0.064+0.01), ], 1, 0.005),
-        Tags([ Tag('part/tag36_11_00001', 0.0845+0.01),
-               Tag('part/tag36_11_00006', 0.1615+0.01),
-               Tag('part/tag36_11_00015', 0.0845+0.01) ],
-               2, 0.01),
-               ]
-tiago_fov_gui = TiagoFOVGuiCallback(robot, tiago_fov, tagss)
 
 qneutral = crobot.neutralConfiguration()
 qneutral[robot.rankInConfiguration['tiago/hand_thumb_abd_joint']] = 1.5707
@@ -220,7 +192,6 @@ removedJoints = [
             'tiago/hand_thumb_flex_2_joint',
             ]
 crobot.removeJoints(removedJoints, qneutral)
-tiago_fov.reduceModel(removedJoints, qneutral, len_prefix=len("tiago/"))
 del crobot
 robot.insertRobotSRDFModel("tiago", "package://tiago_data/srdf/tiago.srdf")
 robot.insertRobotSRDFModel("tiago", "package://tiago_data/srdf/pal_hey5_gripper.srdf")
@@ -271,10 +242,6 @@ robot.client.manipulation.robot.insertRobotSRDFModelFromString("", srdf_disable_
 
 #vf.loadObstacleModel ("package://gerard_bauzil/urdf/gerard_bauzil.urdf", "room")
 #vf.loadObstacleModel ("package://agimus_demos/urdf/P72-table.urdf", "table")
-# Display Tiago Field of view.
-#vf.guiRequest.append( (tiago_fov.loadInGui, {'self':None}))
-# Display visibility cones.
-#vf.addCallback(tiago_fov_gui)
 
 try:
     v = vf.createViewer()
@@ -459,7 +426,7 @@ def generate_valid_config_for_handle(handle, qinit, qguesses = [], NrandomConfig
     from itertools import chain
     def project_and_validate(e, qrhs, q):
         res, qres, err = graph.generateTargetConfig (e, qrhs, q)
-        return res and not tiago_fov.clogged(qres, robot, tagss) and robot.configIsValid(qres), qres
+        return res and robot.configIsValid(qres), qres
     qpg, qg = None, None
     for qrand in chain(qguesses, ( robot.shootRandomConfig() for _ in range(NrandomConfig) )):
         res, qpg = project_and_validate (edge+" | 0-0_01", qinit, qrand)
@@ -472,7 +439,7 @@ def generate_valid_config(constraint, qguesses = [], NrandomConfig=10):
     from itertools import chain
     for qrand in chain(qguesses, ( robot.shootRandomConfig() for _ in range(NrandomConfig) )):
         res, qres = constraint.apply (qrand)
-        if res and not tiago_fov.clogged(qres, robot, tagss) and robot.configIsValid(qres):
+        if res and robot.configIsValid(qres):
             return True, qres
     return False, None
 
@@ -854,9 +821,6 @@ res, q, err = graph.applyNodeConstraints(free, q0)
 assert res
 robot.setCurrentConfig(q)
 oMh, oMd = robot.hppcorba.robot.getJointsPosition(q, ["tiago/hand_tool_link", "driller/base_link"])
-tiago_fov.appendUrdfModel(Driller.urdfFilename, "hand_tool_link",
-        (Transform(oMh).inverse() * Transform(oMd)).toTuple(),
-        prefix="driller/")
 # 3}}}
 
 # {{{3 Create InStatePlanner
