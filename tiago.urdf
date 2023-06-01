@@ -40,7 +40,7 @@
     <!-- this  is expected to be reparented to pelvis with appropriate offset
          when  imu_link is reduced by fixed joint reduction -->
     <!-- todo: this is working  with gazebo 1.4, need to write a unit test -->
-    <sensor name="imu_sensor"type="imu">
+    <sensor name="imu_sensor" type="imu">
       <always_on>1</always_on>
       <update_rate>1000.0</update_rate>
        <imu>
@@ -103,11 +103,11 @@
   <material name="Yellow">
     <color rgba="0.96 0.88 0.14 1.0"/>
   </material>
-  <link name="base_laser_link"type="laser">
+  <link name="base_laser_link" type="laser">
     <inertial>
       <origin rpy="0 0 0" xyz="-0.02559000000  -0.00056000000 -0.05732000000"/>
       <mass value="0.28922000000"/>
-       <inertia ixx="0.00002628919" ixy="0.00000024298" ixz="-0.00000368129"iyy="0.00003374542" iyz="-0.00000001330" izz="0.00005832599"/>
+       <inertia ixx="0.00002628919" ixy="0.00000024298" ixz="-0.00000368129" iyy="0.00003374542" iyz="-0.00000001330" izz="0.00005832599"/>
     </inertial>
      <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -159,7 +159,7 @@
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <mass value="0.001"/>
-      <inertia ixx="0.000001" ixy="0" ixz="0" iyy="0.000001"iyz="0" izz="0.000001"/>
+      <inertia ixx="0.000001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.000001"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -170,7 +170,7 @@
     </visual>
   </link>
    <joint name="base_sonar_03_joint" type="fixed">
-    <origin rpy="0 0 2.35619449019"xyz="-0.183 0.183 0.173"/>
+    <origin rpy="0 0 2.35619449019" xyz="-0.183 0.183 0.173"/>
     <axis xyz="0 0 1"/>
     <parent link="base_link"/>
     <child link="base_sonar_03_link"/>
@@ -217,9 +217,9 @@
   </gazebo>
    <link name="base_sonar_02_link">
     <inertial>
-      <origin rpy="0 0 0"xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <mass value="0.001"/>
-      <inertia ixx="0.000001"ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.000001"/>
+      <inertia ixx="0.000001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.000001"/>
     </inertial>
      <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -230,7 +230,7 @@
     </visual>
   </link>
    <joint name="base_sonar_02_joint" type="fixed">
-    <origin rpy="0 0 3.14159265359"xyz="-0.259 0.0 0.173"/>
+    <origin rpy="0 0 3.14159265359" xyz="-0.259 0.0 0.173"/>
     <axis xyz="0 0 1"/>
     <parent link="base_link"/>
     <child link="base_sonar_02_link"/>
@@ -277,9 +277,9 @@
   </gazebo>
    <link name="base_sonar_01_link">
     <inertial>
-      <origin rpy="0 0 0"xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <mass value="0.001"/>
-      <inertia ixx="0.000001"ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.000001"/>
+      <inertia ixx="0.000001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.000001"/>
     </inertial>
      <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -290,7 +290,7 @@
     </visual>
   </link>
    <joint name="base_sonar_01_joint" type="fixed">
-    <origin rpy="0 0 3.92699081699"xyz="-0.183 -0.183 0.173"/>
+    <origin rpy="0 0 3.92699081699" xyz="-0.183 -0.183 0.173"/>
     <axis xyz="0 0 1"/>
     <parent link="base_link"/>
     <child link="base_sonar_01_link"/>
@@ -336,25 +336,25 @@
     <material>Gazebo/DarkGrey</material>
   </gazebo>
    <link name="base_mic_front_left_link"/>
-  <joint name="base_mic_front_left_joint"type="fixed">
+  <joint name="base_mic_front_left_joint" type="fixed">
     <origin rpy="0 0 0" xyz="0.23182 0.03902 0.195"/>
      <child link="base_mic_front_left_link"/>
     <parent link="base_link"/>
    </joint>
   <link name="base_mic_front_right_link"/>
-  <joint name="base_mic_front_right_joint"type="fixed">
+  <joint name="base_mic_front_right_joint" type="fixed">
     <origin rpy="0 0 0" xyz="0.23182 -0.03902 0.195"/>
      <child link="base_mic_front_right_link"/>
     <parent link="base_link"/>
   </joint>
   <link name="base_mic_back_left_link"/>
-  <joint name="base_mic_back_left_joint"type="fixed">
+  <joint name="base_mic_back_left_joint" type="fixed">
     <origin rpy="0 0 0" xyz="-0.1082 -0.0599 0.195"/>
      <child link="base_mic_back_left_link"/>
     <parent link="base_link"/>
    </joint>
   <link name="base_mic_back_right_link"/>
-  <joint name="base_mic_back_right_joint"type="fixed">
+  <joint name="base_mic_back_right_joint" type="fixed">
     <origin rpy="0 0 0" xyz="-0.1082 -0.13789 0.195"/>
      <child link="base_mic_back_right_link"/>
     <parent link="base_link"/>
@@ -404,9 +404,9 @@
   </gazebo>
    <link name="base_cover_link">
     <inertial>
-      <origin rpy="0 0 0"xyz="0.22414000000 0.00002000000 0.04681000000"/>
+      <origin rpy="0 0 0" xyz="0.22414000000 0.00002000000 0.04681000000"/>
       <mass value="0.25821000000"/>
-      <inertia ixx="0.00023719188" ixy="0.00000006119" ixz="-0.00000011799"iyy="0.00028335052" iyz="0.00000000774" izz="0.00038497063"/>
+      <inertia ixx="0.00023719188" ixy="0.00000006119" ixz="-0.00000011799" iyy="0.00028335052" iyz="0.00000000774" izz="0.00038497063"/>
     </inertial>
      <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -428,7 +428,7 @@
     <inertial>
       <origin  rpy="0 0 0" xyz="0 0 0"/>
       <mass value="0.000001"/>
-      <inertia  ixx="0.00000002371" ixy="0.00000006119" ixz="0.00000001179" iyy="0.00000002833"iyz="0.00000000774" izz="0.00000003849"/>
+      <inertia  ixx="0.00000002371" ixy="0.00000006119" ixz="0.00000001179" iyy="0.00000002833" iyz="0.00000000774" izz="0.00000003849"/>
     </inertial>
     <visual>
        <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -448,16 +448,16 @@
   <gazebo reference="base_antenna_left_link">
      <material>Gazebo/Black</material>
   </gazebo>
-  <joint name="base_antenna_left_joint"type="fixed">
+  <joint name="base_antenna_left_joint" type="fixed">
     <parent link="base_link"/>
     <child link="base_antenna_left_link"/>
     <origin rpy="0 0 0" xyz="-0.201 0.1062 0.195"/>
   </joint>
   <link  name="base_antenna_right_link">
     <inertial>
-      <origin rpy="0 0 0"xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <mass value="0.000001"/>
-      <inertia ixx="0.00000002371"ixy="0.00000006119" ixz="0.00000001179" iyy="0.00000002833" iyz="0.00000000774"izz="0.00000003849"/>
+      <inertia ixx="0.00000002371" ixy="0.00000006119" ixz="0.00000001179" iyy="0.00000002833" iyz="0.00000000774" izz="0.00000003849"/>
     </inertial>
     <visual>
       <origin rpy="0  0 0" xyz="0 0 0"/>
@@ -477,7 +477,7 @@
   <gazebo reference="base_antenna_right_link">
     <material>Gazebo/Black</material>
   </gazebo>
-  <joint name="base_antenna_right_joint"type="fixed">
+  <joint name="base_antenna_right_joint" type="fixed">
     <parent link="base_link"/>
     <child link="base_antenna_right_link"/>
     <origin rpy="0 0 0" xyz="-0.201 -0.1062 0.195"/>
@@ -486,7 +486,7 @@
     <inertial>
       <mass value="0.01"/>
       <origin  xyz="0 0 0"/>
-      <inertia ixx="0.000001" ixy="0" ixz="0" iyy="0.000001"iyz="0" izz="0.000001"/>
+      <inertia ixx="0.000001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.000001"/>
     </inertial>
     <!--visual>
         <origin  rpy="0 0 0" xyz="0 0 0"/>
@@ -501,7 +501,7 @@
     <origin rpy="0 0 -1.57079632679" xyz="0.10171 0 0.11282"/>
   </joint>
   <gazebo reference="base_imu_link">
-    <sensor name="base_imu_sensor"type="imu">
+    <sensor name="base_imu_sensor" type="imu">
       <always_on>1</always_on>
       <update_rate>100.0</update_rate>
        <imu>
@@ -525,7 +525,7 @@
   </gazebo>
    <link name="wheel_right_link">
     <inertial>
-      <origin rpy="0 0 0"xyz="0 0 -0.00207"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.00207"/>
       <mass value="1.82362"/>
       <inertia ixx="0.00499743171" ixy="4.464e-08" ixz="-0.00000002245" iyy="0.00499741733" iyz="-1.64e-09" izz="0.00839239692"/>
     </inertial>
@@ -539,7 +539,7 @@
     <collision>
       <origin  rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <cylinder length="0.04"radius="0.0985"/>
+        <cylinder length="0.04" radius="0.0985"/>
       </geometry>
     </collision>
   </link>
@@ -615,7 +615,7 @@
     <inertial>
       <origin rpy="0 0  0" xyz="0 0 -0.02"/>
       <mass value="10"/>
-      <inertia ixx="1.0"ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0"/>
+      <inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0"/>
     </inertial>
      <kinematic>0</kinematic>
     <gravity>1</gravity>
@@ -623,14 +623,14 @@
   <joint name="suspension_left_joint" type="prismatic">
     <origin rpy="0 0 0" xyz="0 0  0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="100.0" lower="-0.005"upper="0.005" velocity="1.0"/>
+    <limit effort="100.0" lower="-0.005" upper="0.005" velocity="1.0"/>
     <child link="suspension_left_link"/>
      <parent link="base_link"/>
     <calibration rising="0.0"/>
     <dynamics  damping="100"/>
     <safety_controller k_position="0" k_velocity="10" soft_lower_limit="-0.005" soft_upper_limit="0.005"/>
   </joint>
-  <joint name="wheel_left_joint"type="continuous">
+  <joint name="wheel_left_joint" type="continuous">
     <parent link="suspension_left_link"/>
     <child  link="wheel_left_link"/>
     <origin rpy="-1.57079632679 0 0" xyz="0 0.2022  0"/>
@@ -706,7 +706,7 @@
     <axis xyz="0 0 1"/>
      <dynamics damping="0.005" friction="0.0"/>
   </joint>
-  <joint name="caster_front_right_2_joint"type="continuous">
+  <joint name="caster_front_right_2_joint" type="continuous">
     <parent link="caster_front_right_1_link"/>
     <child  link="caster_front_right_2_link"/>
     <origin rpy="-1.57079632679 0 0" xyz="-0.016 0.0000 -0.040"/>
@@ -782,7 +782,7 @@
     <axis xyz="0 0 1"/>
     <dynamics  damping="0.005" friction="0.0"/>
   </joint>
-  <joint name="caster_front_left_2_joint"type="continuous">
+  <joint name="caster_front_left_2_joint" type="continuous">
     <parent link="caster_front_left_1_link"/>
     <child  link="caster_front_left_2_link"/>
     <origin rpy="-1.57079632679 0 0" xyz="-0.016 0.0000 -0.040"/>
@@ -858,7 +858,7 @@
     <axis xyz="0 0 1"/>
     <dynamics  damping="0.005" friction="0.0"/>
   </joint>
-  <joint name="caster_back_right_2_joint"type="continuous">
+  <joint name="caster_back_right_2_joint" type="continuous">
     <parent link="caster_back_right_1_link"/>
     <child  link="caster_back_right_2_link"/>
     <origin rpy="-1.57079632679 0 0" xyz="-0.016 0.0000 -0.040"/>
@@ -934,7 +934,7 @@
     <axis xyz="0 0 1"/>
     <dynamics  damping="0.005" friction="0.0"/>
   </joint>
-  <joint name="caster_back_left_2_joint"type="continuous">
+  <joint name="caster_back_left_2_joint" type="continuous">
     <parent link="caster_back_left_1_link"/>
     <child  link="caster_back_left_2_link"/>
     <origin rpy="-1.57079632679 0 0" xyz="-0.016 0.0000 -0.040"/>
@@ -968,12 +968,12 @@
     <inertial>
       <origin  rpy="0.00000 0.00000 0.00000" xyz="0.02435 -0.00464 0.15900"/>
       <mass  value="14.01360"/>
-      <inertia ixx="0.38341100000" ixy="0.00036400000"ixz="-0.02438900000" iyy="0.40577300000" iyz="-0.00078200000" izz="0.07699800000"/>
+      <inertia ixx="0.38341100000" ixy="0.00036400000" ixz="-0.02438900000" iyy="0.40577300000" iyz="-0.00078200000" izz="0.07699800000"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
        <geometry>
-        <mesh filename="package://tiago_description/meshes/torso/torso_fix.stl"scale="1 1 1"/>
+        <mesh filename="package://tiago_description/meshes/torso/torso_fix.stl" scale="1 1 1"/>
       </geometry>
       <material name="LightGrey"/>
      </visual>
@@ -1031,34 +1031,34 @@
     <inertial>
       <origin rpy="0.00000  0.00000 0.00000" xyz="0.04361 -0.00116 -0.17334"/>
       <mass value="6.93198"/>
-      <inertia ixx="0.24487000000" ixy="-0.00145600000" ixz="-0.00974200000"iyy="0.24926900000" iyz="0.00828100000" izz="0.09039500000"/>
+      <inertia ixx="0.24487000000" ixy="-0.00145600000" ixz="-0.00974200000" iyy="0.24926900000" iyz="0.00828100000" izz="0.09039500000"/>
     </inertial>
      <!-- Lifting body -->
     <visual>
       <origin rpy="0 0 0" xyz="0 0  0"/>
       <geometry>
-        <mesh filename="package://tiago_description/meshes/torso/torso_lift_with_arm.stl"scale="1 1 1"/>
+        <mesh filename="package://tiago_description/meshes/torso/torso_lift_with_arm.stl" scale="1 1 1"/>
       </geometry>
       <material name="White"/>
     </visual>
      <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-         <mesh filename="package://tiago_description/meshes/torso/torso_lift_collision_core.dae"scale="1 1 1"/>
+         <mesh filename="package://tiago_description/meshes/torso/torso_lift_collision_core.dae" scale="1 1 1"/>
       </geometry>
       <material name="LightGrey"/>
      </collision>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
        <geometry>
-        <mesh filename="package://tiago_description/meshes/torso/torso_lift_collision_shoulder.dae"scale="1 1 1"/>
+        <mesh filename="package://tiago_description/meshes/torso/torso_lift_collision_shoulder.dae" scale="1 1 1"/>
       </geometry>
       <material name="LightGrey"/>
      </collision>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
        <geometry>
-        <mesh filename="package://tiago_description/meshes/torso/torso_lift_collision_neck.dae"scale="1 1 1"/>
+        <mesh filename="package://tiago_description/meshes/torso/torso_lift_collision_neck.dae" scale="1 1 1"/>
       </geometry>
       <material name="LightGrey"/>
      </collision>
@@ -1087,19 +1087,19 @@
     <inertial>
        <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00508 0.00237 0.07229"/>
       <mass value="0.62220"/>
-      <inertia ixx="0.00119200000" ixy="-0.00000700000" ixz="0.00009600000" iyy="0.00140200000" iyz="0.00000400000"izz="0.00088900000"/>
+      <inertia ixx="0.00119200000" ixy="-0.00000700000" ixz="0.00009600000" iyy="0.00140200000" iyz="0.00000400000" izz="0.00088900000"/>
     </inertial>
     <visual>
       <origin rpy="0  0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://tiago_description/meshes/head/head_1.stl"scale="1 1 1"/>
+        <mesh filename="package://tiago_description/meshes/head/head_1.stl" scale="1 1 1"/>
       </geometry>
       <material name="White"/>
     </visual>
      <collision>
       <origin rpy="0 0 0.0" xyz="0.0 0 0"/>
       <geometry>
-         <mesh filename="package://tiago_description/meshes/head/head_1_collision.dae"scale="1 1 1"/>
+         <mesh filename="package://tiago_description/meshes/head/head_1_collision.dae" scale="1 1 1"/>
       </geometry>
       <material name="White"/>
     </collision>
@@ -1107,9 +1107,9 @@
   <joint name="head_1_joint" type="revolute">
     <parent link="torso_lift_link"/>
     <child link="head_1_link"/>
-    <origin rpy="0 0 0"xyz="0.182 0.0 0.0"/>
+    <origin rpy="0 0 0" xyz="0.182 0.0 0.0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="5.197"lower="-1.308996939" upper="1.308996939" velocity="3.0"/>
+    <limit effort="5.197" lower="-1.308996939" upper="1.308996939" velocity="3.0"/>
     <dynamics  damping="0.5" friction="1.0"/>
     <safety_controller k_position="20" k_velocity="20" soft_lower_limit="-1.238996939" soft_upper_limit="1.238996939"/>
   </joint>
@@ -1135,19 +1135,19 @@
     <inertial>
        <origin rpy="0.00000 0.00000 0.00000" xyz="0.04700 0.05542 0.00022"/>
        <mass value="0.66123"/>
-      <inertia ixx="0.00462000000" ixy="0.00068900000"ixz="0.00000600000" iyy="0.00486100000" iyz="0.00000600000" izz="0.00313200000"/>
+      <inertia ixx="0.00462000000" ixy="0.00068900000" ixz="0.00000600000" iyy="0.00486100000" iyz="0.00000600000" izz="0.00313200000"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
        <geometry>
-        <mesh filename="package://tiago_description/meshes/head/head_2.stl"scale="1 1 1"/>
+        <mesh filename="package://tiago_description/meshes/head/head_2.stl" scale="1 1 1"/>
       </geometry>
       <material name="White"/>
     </visual>
      <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-         <mesh filename="package://tiago_description/meshes/head/head_2_collision.dae"scale="1 1 1"/>
+         <mesh filename="package://tiago_description/meshes/head/head_2_collision.dae" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1156,7 +1156,7 @@
     <child  link="head_2_link"/>
     <origin rpy="1.57079632679 0 0" xyz="0.005 0.0  0.098"/>
     <axis xyz="0 0 1"/>
-    <limit effort="2.77" lower="-1.0471975512"upper="0.785398163397" velocity="3.0"/>
+    <limit effort="2.77" lower="-1.0471975512" upper="0.785398163397" velocity="3.0"/>
     <dynamics damping="0.5" friction="1.0"/>
     <safety_controller k_position="20" k_velocity="20" soft_lower_limit="-0.977197551197" soft_upper_limit="0.715398163397"/>
   </joint>
@@ -1181,7 +1181,7 @@
     <inertial>
        <origin rpy="0 0 0" xyz="-0.00936000000 -0.00003000000 -0.00273000000"/>
       <mass value="0.21970000000"/>
-      <inertia ixx="0.00000429247"ixy="0.00000000000" ixz="0.00000002565" iyy="0.00000008027" iyz="0.00000000000"izz="0.00000427339"/>
+      <inertia ixx="0.00000429247" ixy="0.00000000000" ixz="0.00000002565" iyy="0.00000008027" iyz="0.00000000000" izz="0.00000427339"/>
     </inertial>
     <!--
       <visual>
@@ -1210,7 +1210,7 @@
     <inertial>
       <origin rpy="0 0  0" xyz="0 0 0"/>
       <mass value="0.001"/>
-      <inertia ixx="0.00001"ixy="0" ixz="0" iyy="0.00001" iyz="0" izz="0.00001"/>
+      <inertia ixx="0.00001" ixy="0" ixz="0" iyy="0.00001" iyz="0" izz="0.00001"/>
     </inertial>
    </link>
   <!-- frame of camera origin provided by Orbbec, need this intermediate  frame for backwards compatibility with xtion_pro_live
@@ -1233,7 +1233,7 @@
   </link>
   <!-- frames of the depth sensor -->
    <joint name="xtion_depth_joint" type="fixed">
-    <origin rpy="0 0 0"xyz="0.0 0.025 0.0"/>
+    <origin rpy="0 0 0" xyz="0.0 0.025 0.0"/>
     <parent link="xtion_rgb_frame"/>
     <child link="xtion_depth_frame"/>
   </joint>
@@ -1244,7 +1244,7 @@
        <inertia ixx="0.00001" ixy="0" ixz="0" iyy="0.00001" iyz="0" izz="0.00001"/>
     </inertial>
   </link>
-  <joint name="xtion_depth_optical_joint"type="fixed">
+  <joint name="xtion_depth_optical_joint" type="fixed">
     <origin rpy="-1.57079632679 0.0 -1.57079632679" xyz="0 0 0"/>
     <parent link="xtion_depth_frame"/>
     <child link="xtion_depth_optical_frame"/>
@@ -1269,7 +1269,7 @@
       <inertia ixx="0.00001" ixy="0" ixz="0" iyy="0.00001" iyz="0" izz="0.00001"/>
     </inertial>
   </link>
-  <joint name="xtion_rgb_optical_joint"type="fixed">
+  <joint name="xtion_rgb_optical_joint" type="fixed">
     <origin rpy="-1.57079632679 0.0 -1.57079632679" xyz="0 0 0"/>
     <parent link="xtion_rgb_frame"/>
     <child link="xtion_rgb_optical_frame"/>
@@ -1325,20 +1325,20 @@
       <!--<origin xyz="0.061191 ${reflect * -0.022397}  -0.012835" rpy="0.00000 0.00000 0.00000"/>-->
       <origin rpy="0.00000  0.00000 0.00000" xyz="0.061191 -0.022397 -0.012835"/>
       <mass value="1.563428"/>
-      <inertia ixx="0.002471" ixy="-0.001809" ixz="-0.001202"iyy="0.006132" iyz="0.000494" izz="0.006704"/>
+      <inertia ixx="0.002471" ixy="-0.001809" ixz="-0.001202" iyy="0.006132" iyz="0.000494" izz="0.006704"/>
     </inertial>
     <!--  M90 module -->
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
        <geometry>
-        <mesh filename="package://tiago_description/meshes/arm/arm_1.stl"scale="1 1 1"/>
+        <mesh filename="package://tiago_description/meshes/arm/arm_1.stl" scale="1 1 1"/>
       </geometry>
       <material name="White"/>
     </visual>
      <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-         <mesh filename="package://tiago_description/meshes/arm/arm_1_collision.dae"scale="1 1 1"/>
+         <mesh filename="package://tiago_description/meshes/arm/arm_1_collision.dae" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1347,7 +1347,7 @@
     <child  link="arm_1_link"/>
     <origin rpy="0 0 -1.57079632679" xyz="0.15505 0.014  -0.151"/>
     <axis xyz="0 0 1"/>
-    <limit effort="43.0" lower="0.0"upper="2.74889357189" velocity="1.95"/>
+    <limit effort="43.0" lower="0.0" upper="2.74889357189" velocity="1.95"/>
     <dynamics damping="1.0" friction="1.0"/>
     <safety_controller k_position="20" k_velocity="20" soft_lower_limit="0.07" soft_upper_limit="2.67889357189"/>
   </joint>
@@ -1369,7 +1369,7 @@
       <!--  <origin xyz="0 0 0" rpy="${180 * deg_to_rad} ${0 * deg_to_rad} ${-90 * deg_to_rad}"/> -->
       <origin rpy="0.0 0.0 0.0" xyz="0 0 0"/>
       <geometry>
-         <mesh filename="package://tiago_description/meshes/arm/arm_2_collision.dae"scale="1 1 1"/>
+         <mesh filename="package://tiago_description/meshes/arm/arm_2_collision.dae" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1378,7 +1378,7 @@
     <child  link="arm_2_link"/>
     <origin rpy="1.57079632679 0.0 0.0" xyz="0.125 0.0195  -0.031"/>
     <axis xyz="0 0 1"/>
-    <limit effort="43.0" lower="-1.57079632679"upper="1.0908307825" velocity="1.95"/>
+    <limit effort="43.0" lower="-1.57079632679" upper="1.0908307825" velocity="1.95"/>
     <dynamics damping="1.0" friction="1.0"/>
     <safety_controller k_position="20" k_velocity="20" soft_lower_limit="-1.50079632679" soft_upper_limit="1.0208307825"/>
   </joint>
@@ -1386,19 +1386,19 @@
     <inertial>
       <origin rpy="0.00000 0.00000 0.00000" xyz="0.007418 -0.004361 -0.134194"/>
       <mass value="2.343502"/>
-      <inertia  ixx="0.019541" ixy="-0.000105" ixz="-0.001717" iyy="0.019936" iyz="0.000852"izz="0.002864"/>
+      <inertia  ixx="0.019541" ixy="-0.000105" ixz="-0.001717" iyy="0.019936" iyz="0.000852" izz="0.002864"/>
     </inertial>
     <visual>
-      <origin rpy="0 0 0"xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://tiago_description/meshes/arm/arm_3.stl"scale="1 1 1"/>
+        <mesh filename="package://tiago_description/meshes/arm/arm_3.stl" scale="1 1 1"/>
       </geometry>
       <material name="DarkGrey"/>
      </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
        <geometry>
-        <mesh filename="package://tiago_description/meshes/arm/arm_3_collision.dae"scale="1 1 1"/>
+        <mesh filename="package://tiago_description/meshes/arm/arm_3_collision.dae" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1418,7 +1418,7 @@
     <inertial>
        <origin rpy="0.00000 0.00000 0.00000" xyz="-0.095658 0.014666 0.018133"/>
       <mass value="1.432697"/>
-      <inertia ixx="0.002040" ixy="0.000725"ixz="-0.00115" iyy="0.008424" iyz="-0.000204" izz="0.008686"/>
+      <inertia ixx="0.002040" ixy="0.000725" ixz="-0.00115" iyy="0.008424" iyz="-0.000204" izz="0.008686"/>
     </inertial>
      <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -1430,7 +1430,7 @@
      <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-         <mesh filename="package://tiago_description/meshes/arm/arm_4_collision.dae"scale="1 1 1"/>
+         <mesh filename="package://tiago_description/meshes/arm/arm_4_collision.dae" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1485,28 +1485,28 @@
     <inertial>
       <origin rpy="0.00000 0.00000 0.00000" xyz="0.001078  -0.000151 -0.077173"/>
       <mass value="0.9359143689"/>
-      <inertia  ixx="0.001036187977" ixy="1.0622321E-07" ixz="1.9920336E-06" iyy="0.000794527176366096"iyz="-2.56396106998404E-07" izz="0.000439831229979178"/>
+      <inertia  ixx="0.001036187977" ixy="1.0622321E-07" ixz="1.9920336E-06" iyy="0.000794527176366096" iyz="-2.56396106998404E-07" izz="0.000439831229979178"/>
     </inertial>
      <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-         <mesh filename="package://tiago_description/meshes/arm/arm_5-wrist-2017.stl"scale="1 1 1"/>
+         <mesh filename="package://tiago_description/meshes/arm/arm_5-wrist-2017.stl" scale="1 1 1"/>
       </geometry>
       <material name="LightGrey"/>
      </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
        <geometry>
-        <mesh filename="package://tiago_description/meshes/arm/arm_5_collision-wrist-2017.dae"scale="1 1 1"/>
+        <mesh filename="package://tiago_description/meshes/arm/arm_5_collision-wrist-2017.dae" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
   <joint name="arm_5_joint" type="revolute">
     <parent link="arm_4_link"/>
     <child  link="arm_5_link"/>
-    <origin rpy="1.57079632679 -1.57079632679 -1.57079632679"xyz="-0.162 0.02 0.027"/>
+    <origin rpy="1.57079632679 -1.57079632679 -1.57079632679" xyz="-0.162 0.02 0.027"/>
     <axis xyz="0 0 1"/>
-    <limit effort="3"lower="-2.09439510239" upper="2.09439510239" velocity="1.95"/>
+    <limit effort="3" lower="-2.09439510239" upper="2.09439510239" velocity="1.95"/>
     <dynamics  damping="1.0" friction="1.0"/>
     <safety_controller k_position="20" k_velocity="20" soft_lower_limit="-2.07439510239" soft_upper_limit="2.07439510239"/>
    </joint>
@@ -1514,19 +1514,19 @@
     <inertial>
       <origin rpy="0.00000 0.00000 0.00000" xyz="-0.000153 -0.003122 0.000183"/>
       <mass value="0.30275767222"/>
-      <inertia ixx="3.29233557E-05" ixy="6.31537395E-08"ixz="-4.567124912E-11" iyy="3.85334410118923E-05" iyz="-2.01613082836742E-07"izz="3.33282849168039E-05"/>
+      <inertia ixx="3.29233557E-05" ixy="6.31537395E-08" ixz="-4.567124912E-11" iyy="3.85334410118923E-05" iyz="-2.01613082836742E-07" izz="3.33282849168039E-05"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://tiago_description/meshes/arm/arm_6-wrist-2017.stl"scale="1 1 1"/>
+        <mesh filename="package://tiago_description/meshes/arm/arm_6-wrist-2017.stl" scale="1 1 1"/>
       </geometry>
       <material name="LightGrey"/>
      </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
        <geometry>
-        <mesh filename="package://tiago_description/meshes/arm/arm_6_collision-wrist-2017.dae"scale="1 1 1"/>
+        <mesh filename="package://tiago_description/meshes/arm/arm_6_collision-wrist-2017.dae" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1535,7 +1535,7 @@
     <child  link="arm_6_link"/>
     <origin rpy="0.0 -1.57079632679 -1.57079632679" xyz="0 0 0.15"/>
     <axis xyz="0 0 1"/>
-    <limit effort="6.6" lower="-1.41371669412"upper="1.41371669412" velocity="1.76"/>
+    <limit effort="6.6" lower="-1.41371669412" upper="1.41371669412" velocity="1.76"/>
     <dynamics damping="1.0" friction="1.0"/>
     <safety_controller k_position="20" k_velocity="20" soft_lower_limit="-1.39371669412" soft_upper_limit="1.39371669412"/>
   </joint>
@@ -1698,10 +1698,10 @@
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <mass value="0.0001"/>
-      <inertia ixx="0.00001" ixy="0.0" ixz="0.0" iyy="0.00001"iyz="0.0" izz="0.00001"/>
+      <inertia ixx="0.00001" ixy="0.0" ixz="0.0" iyy="0.00001" iyz="0.0" izz="0.00001"/>
     </inertial>
   </link>
-  <joint name="hand_tool_joint"type="fixed">
+  <joint name="hand_tool_joint" type="fixed">
     <origin rpy="0 0 0" xyz="0 0 0"/>
     <parent link="wrist_ft_tool_link"/>
     <child link="hand_tool_link"/>
@@ -1717,19 +1717,19 @@
       <origin rpy="0 0 0" xyz="0.0641 -0.0022 0.0021"/>
        <!-- NOTE: Less than total palm mass of 0.598kg because actuator masses are  specified separately -->
       <mass value="0.4"/>
-      <inertia ixx="0.000305100"ixy="0.000005037" ixz="0.000015302" iyy="0.000811920" iyz="0.000007622"izz="0.000655851"/>
+      <inertia ixx="0.000305100" ixy="0.000005037" ixz="0.000015302" iyy="0.000811920" iyz="0.000007622" izz="0.000655851"/>
     </inertial>
     <visual>
       <origin rpy="0 0  0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://hey5_description/meshes/palm.stl"scale="1 1 1"/>
+        <mesh filename="package://hey5_description/meshes/palm.stl" scale="1 1 1"/>
       </geometry>
       <material name="Hey5DarkGrey"/>
      </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
        <geometry>
-        <mesh filename="package://hey5_description/meshes/palm_collision.stl"scale="1 1 1"/>
+        <mesh filename="package://hey5_description/meshes/palm_collision.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1741,7 +1741,7 @@
     <child link="hand_thumb_link"/>
     <origin rpy="0 0 0" xyz="0 0 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="2.0" lower="-2.61799387799"upper="6.28318530718" velocity="3.35"/>
+    <limit effort="2.0" lower="-2.61799387799" upper="6.28318530718" velocity="3.35"/>
     <dynamics damping="0.5" friction="0.0"/>
     <!-- TODO: Tune -->
     <safety_controller k_position="20" k_velocity="20" soft_lower_limit="-2.61799387799" soft_upper_limit="6.28318530718"/>
@@ -1750,7 +1750,7 @@
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <mass value="0.05"/>
-      <inertia ixx="0.001"ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
       <!--To stabilize  simulation-->
     </inertial>
     <visual>
@@ -1790,7 +1790,7 @@
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
        <mass value="0.05"/>
-      <inertia ixx="0.001" ixy="0" ixz="0"iyy="0.001" iyz="0" izz="0.001"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
       <!--To stabilize simulation-->
      </inertial>
     <visual>
@@ -1830,7 +1830,7 @@
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
        <mass value="0.05"/>
-      <inertia ixx="0.001" ixy="0" ixz="0"iyy="0.001" iyz="0" izz="0.001"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
       <!--To stabilize simulation-->
      </inertial>
     <visual>
@@ -1861,7 +1861,7 @@
     <child link="hand_thumb_abd_link"/>
     <origin rpy="0 -1.1344640138 0" xyz="0.0901 0.0134 0.038"/>
     <axis  xyz="0 0 1"/>
-    <limit effort="2.0" lower="0.0" upper="1.57079632679"velocity="2.0"/>
+    <limit effort="2.0" lower="0.0" upper="1.57079632679" velocity="2.0"/>
     <dynamics damping="0.5" friction="0.0"/>
   </joint>
    <link name="hand_thumb_abd_link">
@@ -1874,14 +1874,14 @@
     <visual>
       <origin  rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://hey5_description/meshes/thumb_abd_collision.stl"scale="1 1 1"/>
+        <mesh filename="package://hey5_description/meshes/thumb_abd_collision.stl" scale="1 1 1"/>
       </geometry>
       <material name="Hey5DarkGrey"/>
      </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
        <geometry>
-        <mesh filename="package://hey5_description/meshes/thumb_abd_collision.stl"scale="1 1 1"/>
+        <mesh filename="package://hey5_description/meshes/thumb_abd_collision.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1921,7 +1921,7 @@
   <gazebo reference="hand_thumb_virtual_1_link">
     <material>Gazebo/Black</material>
   </gazebo>
-  <joint name="hand_thumb_flex_1_joint"type="revolute">
+  <joint name="hand_thumb_flex_1_joint" type="revolute">
     <parent link="hand_thumb_virtual_1_link"/>
     <child  link="hand_thumb_flex_1_link"/>
     <origin rpy="0 0 0" xyz="0.013 0 0"/>
@@ -1953,7 +1953,7 @@
   <gazebo reference="hand_thumb_flex_1_link">
      <material>Gazebo/Black</material>
   </gazebo>
-  <joint name="hand_thumb_virtual_2_joint"type="revolute">
+  <joint name="hand_thumb_virtual_2_joint" type="revolute">
     <parent link="hand_thumb_flex_1_link"/>
     <child  link="hand_thumb_virtual_2_link"/>
     <origin rpy="0 0 0" xyz="0.009 0  0"/>
@@ -1986,7 +1986,7 @@
   <gazebo reference="hand_thumb_virtual_2_link">
     <material>Gazebo/Black</material>
   </gazebo>
-  <joint name="hand_thumb_flex_2_joint"type="revolute">
+  <joint name="hand_thumb_flex_2_joint" type="revolute">
     <parent link="hand_thumb_virtual_2_link"/>
     <child  link="hand_thumb_flex_2_link"/>
     <origin rpy="0 0 0" xyz="0.013 0 0"/>
@@ -2018,7 +2018,7 @@
   <gazebo reference="hand_thumb_flex_2_link">
      <material>Gazebo/Black</material>
   </gazebo>
-  <joint name="hand_index_abd_joint"type="revolute">
+  <joint name="hand_index_abd_joint" type="revolute">
     <parent link="hand_palm_link"/>
     <child link="hand_index_abd_link"/>
     <origin rpy="-1.57079632679 -0.523598775598 0" xyz="0.1265 0.0042 0.0265"/>
@@ -2030,20 +2030,20 @@
      <inertial>
       <origin rpy="0 0 0" xyz="-0.0018 0.0 0.0028"/>
       <mass  value="0.018"/>
-      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001"iyz="0" izz="0.001"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
       <!-- To stabilize simulation -->
     </inertial>
      <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-         <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl"scale="1 1 1"/>
+         <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl" scale="1 1 1"/>
       </geometry>
       <material name="Hey5DarkGrey"/>
      </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
        <geometry>
-        <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl"scale="1 1 1"/>
+        <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -2055,7 +2055,7 @@
     <child link="hand_index_virtual_1_link"/>
     <origin rpy="1.57079632679  0 0" xyz="0.009 0 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="2.0"lower="0.0" upper="0.785398163397" velocity="2.0"/>
+    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>
     <dynamics damping="0.5" friction="0.0"/>
   </joint>
   <link name="hand_index_virtual_1_link">
@@ -2083,7 +2083,7 @@
   <gazebo reference="hand_index_virtual_1_link">
     <material>Gazebo/Black</material>
   </gazebo>
-  <joint name="hand_index_flex_1_joint"type="revolute">
+  <joint name="hand_index_flex_1_joint" type="revolute">
     <parent link="hand_index_virtual_1_link"/>
     <child  link="hand_index_flex_1_link"/>
     <origin rpy="0 0 0" xyz="0.013 0 0"/>
@@ -2115,7 +2115,7 @@
   <gazebo reference="hand_index_flex_1_link">
      <material>Gazebo/Black</material>
   </gazebo>
-  <joint name="hand_index_virtual_2_joint"type="revolute">
+  <joint name="hand_index_virtual_2_joint" type="revolute">
     <parent link="hand_index_flex_1_link"/>
     <child  link="hand_index_virtual_2_link"/>
     <origin rpy="0 0 0" xyz="0.009 0  0"/>
@@ -2148,7 +2148,7 @@
   <gazebo reference="hand_index_virtual_2_link">
     <material>Gazebo/Black</material>
   </gazebo>
-  <joint name="hand_index_flex_2_joint"type="revolute">
+  <joint name="hand_index_flex_2_joint" type="revolute">
     <parent link="hand_index_virtual_2_link"/>
     <child  link="hand_index_flex_2_link"/>
     <origin rpy="0 0 0" xyz="0.013 0 0"/>
@@ -2180,7 +2180,7 @@
   <gazebo reference="hand_index_flex_2_link">
      <material>Gazebo/Black</material>
   </gazebo>
-  <joint name="hand_index_virtual_3_joint"type="revolute">
+  <joint name="hand_index_virtual_3_joint" type="revolute">
     <parent link="hand_index_flex_2_link"/>
     <child  link="hand_index_virtual_3_link"/>
     <origin rpy="0 0 0" xyz="0.009 0  0"/>
@@ -2213,7 +2213,7 @@
   <gazebo reference="hand_index_virtual_3_link">
     <material>Gazebo/Black</material>
   </gazebo>
-  <joint name="hand_index_flex_3_joint"type="revolute">
+  <joint name="hand_index_flex_3_joint" type="revolute">
     <parent link="hand_index_virtual_3_link"/>
     <child  link="hand_index_flex_3_link"/>
     <origin rpy="0 0 0" xyz="0.013 0 0"/>
@@ -2245,12 +2245,12 @@
   <gazebo reference="hand_index_flex_3_link">
      <material>Gazebo/Black</material>
   </gazebo>
-  <joint name="hand_middle_abd_joint"type="revolute">
+  <joint name="hand_middle_abd_joint" type="revolute">
     <parent link="hand_palm_link"/>
     <child link="hand_middle_abd_link"/>
     <origin rpy="-1.57079632679 0 0" xyz="0.1335 0.0042  0.007"/>
     <axis xyz="0 0 1"/>
-    <limit effort="2.0" lower="-0.523598775598"upper="0.523598775598" velocity="2.0"/>
+    <limit effort="2.0" lower="-0.523598775598" upper="0.523598775598" velocity="2.0"/>
     <dynamics damping="0.5" friction="0.0"/>
   </joint>
   <link name="hand_middle_abd_link">
@@ -2270,7 +2270,7 @@
      <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-         <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl"scale="1 1 1"/>
+         <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -2282,7 +2282,7 @@
     <child link="hand_middle_virtual_1_link"/>
     <origin rpy="1.57079632679  0 0" xyz="0.009 0 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="2.0"lower="0.0" upper="0.785398163397" velocity="2.0"/>
+    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>
     <dynamics damping="0.5" friction="0.0"/>
   </joint>
   <link name="hand_middle_virtual_1_link">
@@ -2310,7 +2310,7 @@
   <gazebo reference="hand_middle_virtual_1_link">
     <material>Gazebo/Black</material>
   </gazebo>
-  <joint name="hand_middle_flex_1_joint"type="revolute">
+  <joint name="hand_middle_flex_1_joint" type="revolute">
     <parent link="hand_middle_virtual_1_link"/>
     <child  link="hand_middle_flex_1_link"/>
     <origin rpy="0 0 0" xyz="0.013 0 0"/>
@@ -2342,7 +2342,7 @@
   <gazebo reference="hand_middle_flex_1_link">
      <material>Gazebo/Black</material>
   </gazebo>
-  <joint name="hand_middle_virtual_2_joint"type="revolute">
+  <joint name="hand_middle_virtual_2_joint" type="revolute">
     <parent link="hand_middle_flex_1_link"/>
     <child  link="hand_middle_virtual_2_link"/>
     <origin rpy="0 0 0" xyz="0.009 0  0"/>
@@ -2375,7 +2375,7 @@
   <gazebo reference="hand_middle_virtual_2_link">
     <material>Gazebo/Black</material>
   </gazebo>
-  <joint name="hand_middle_flex_2_joint"type="revolute">
+  <joint name="hand_middle_flex_2_joint" type="revolute">
     <parent link="hand_middle_virtual_2_link"/>
     <child  link="hand_middle_flex_2_link"/>
     <origin rpy="0 0 0" xyz="0.013 0 0"/>
@@ -2407,7 +2407,7 @@
   <gazebo reference="hand_middle_flex_2_link">
      <material>Gazebo/Black</material>
   </gazebo>
-  <joint name="hand_middle_virtual_3_joint"type="revolute">
+  <joint name="hand_middle_virtual_3_joint" type="revolute">
     <parent link="hand_middle_flex_2_link"/>
     <child  link="hand_middle_virtual_3_link"/>
     <origin rpy="0 0 0" xyz="0.009 0  0"/>
@@ -2440,7 +2440,7 @@
   <gazebo reference="hand_middle_virtual_3_link">
     <material>Gazebo/Black</material>
   </gazebo>
-  <joint name="hand_middle_flex_3_joint"type="revolute">
+  <joint name="hand_middle_flex_3_joint" type="revolute">
     <parent link="hand_middle_virtual_3_link"/>
     <child  link="hand_middle_flex_3_link"/>
     <origin rpy="0 0 0" xyz="0.013 0 0"/>
@@ -2472,12 +2472,12 @@
   <gazebo reference="hand_middle_flex_3_link">
      <material>Gazebo/Black</material>
   </gazebo>
-  <joint name="hand_ring_abd_joint"type="revolute">
+  <joint name="hand_ring_abd_joint" type="revolute">
     <parent link="hand_palm_link"/>
     <child link="hand_ring_abd_link"/>
     <origin rpy="-1.57079632679 0.261799387799 0" xyz="0.1265 0.0042 -0.0125"/>
     <axis xyz="0 0 1"/>
-    <limit effort="2.0"lower="-0.523598775598" upper="0.523598775598" velocity="2.0"/>
+    <limit effort="2.0" lower="-0.523598775598" upper="0.523598775598" velocity="2.0"/>
     <dynamics  damping="0.5" friction="0.0"/>
   </joint>
   <link name="hand_ring_abd_link">
@@ -2490,14 +2490,14 @@
      <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-         <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl"scale="1 1 1"/>
+         <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl" scale="1 1 1"/>
       </geometry>
       <material name="Hey5DarkGrey"/>
      </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
        <geometry>
-        <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl"scale="1 1 1"/>
+        <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -2509,7 +2509,7 @@
     <child link="hand_ring_virtual_1_link"/>
     <origin rpy="1.57079632679  0 0" xyz="0.009 0 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="2.0"lower="0.0" upper="0.785398163397" velocity="2.0"/>
+    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>
     <dynamics damping="0.5" friction="0.0"/>
   </joint>
   <link name="hand_ring_virtual_1_link">
@@ -2537,7 +2537,7 @@
   <gazebo reference="hand_ring_virtual_1_link">
      <material>Gazebo/Black</material>
   </gazebo>
-  <joint name="hand_ring_flex_1_joint"type="revolute">
+  <joint name="hand_ring_flex_1_joint" type="revolute">
     <parent link="hand_ring_virtual_1_link"/>
     <child  link="hand_ring_flex_1_link"/>
     <origin rpy="0 0 0" xyz="0.013 0 0"/>
@@ -2569,12 +2569,12 @@
   <gazebo reference="hand_ring_flex_1_link">
      <material>Gazebo/Black</material>
   </gazebo>
-  <joint name="hand_ring_virtual_2_joint"type="revolute">
+  <joint name="hand_ring_virtual_2_joint" type="revolute">
     <parent link="hand_ring_flex_1_link"/>
     <child link="hand_ring_virtual_2_link"/>
     <origin rpy="0 0 0" xyz="0.009 0 0"/>
      <axis xyz="0 0 1"/>
-    <limit effort="2.0" lower="0.0" upper="0.785398163397"velocity="2.0"/>
+    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>
     <dynamics damping="0.5" friction="0.0"/>
   </joint>
    <link name="hand_ring_virtual_2_link">
@@ -2602,7 +2602,7 @@
   <gazebo reference="hand_ring_virtual_2_link">
      <material>Gazebo/Black</material>
   </gazebo>
-  <joint name="hand_ring_flex_2_joint"type="revolute">
+  <joint name="hand_ring_flex_2_joint" type="revolute">
     <parent link="hand_ring_virtual_2_link"/>
     <child  link="hand_ring_flex_2_link"/>
     <origin rpy="0 0 0" xyz="0.013 0 0"/>
@@ -2634,12 +2634,12 @@
   <gazebo reference="hand_ring_flex_2_link">
      <material>Gazebo/Black</material>
   </gazebo>
-  <joint name="hand_ring_virtual_3_joint"type="revolute">
+  <joint name="hand_ring_virtual_3_joint" type="revolute">
     <parent link="hand_ring_flex_2_link"/>
     <child link="hand_ring_virtual_3_link"/>
     <origin rpy="0 0 0" xyz="0.009 0 0"/>
      <axis xyz="0 0 1"/>
-    <limit effort="2.0" lower="0.0" upper="0.785398163397"velocity="2.0"/>
+    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>
     <dynamics damping="0.5" friction="0.0"/>
   </joint>
    <link name="hand_ring_virtual_3_link">
@@ -2667,7 +2667,7 @@
   <gazebo reference="hand_ring_virtual_3_link">
      <material>Gazebo/Black</material>
   </gazebo>
-  <joint name="hand_ring_flex_3_joint"type="revolute">
+  <joint name="hand_ring_flex_3_joint" type="revolute">
     <parent link="hand_ring_virtual_3_link"/>
     <child  link="hand_ring_flex_3_link"/>
     <origin rpy="0 0 0" xyz="0.013 0 0"/>
@@ -2699,7 +2699,7 @@
   <gazebo reference="hand_ring_flex_3_link">
      <material>Gazebo/Black</material>
   </gazebo>
-  <joint name="hand_little_abd_joint"type="revolute">
+  <joint name="hand_little_abd_joint" type="revolute">
     <parent link="hand_palm_link"/>
     <child link="hand_little_abd_link"/>
     <origin rpy="-1.57079632679 0.523598775598 0" xyz="0.1165 0.0042 -0.032"/>
@@ -2717,14 +2717,14 @@
      <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-         <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl"scale="1 1 1"/>
+         <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl" scale="1 1 1"/>
       </geometry>
       <material name="Hey5DarkGrey"/>
      </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
        <geometry>
-        <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl"scale="1 1 1"/>
+        <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -2736,7 +2736,7 @@
     <child link="hand_little_virtual_1_link"/>
     <origin rpy="1.57079632679  0 0" xyz="0.009 0 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="2.0"lower="0.0" upper="0.785398163397" velocity="2.0"/>
+    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>
     <dynamics damping="0.5" friction="0.0"/>
   </joint>
   <link name="hand_little_virtual_1_link">
@@ -2764,7 +2764,7 @@
   <gazebo reference="hand_little_virtual_1_link">
     <material>Gazebo/Black</material>
   </gazebo>
-  <joint name="hand_little_flex_1_joint"type="revolute">
+  <joint name="hand_little_flex_1_joint" type="revolute">
     <parent link="hand_little_virtual_1_link"/>
     <child  link="hand_little_flex_1_link"/>
     <origin rpy="0 0 0" xyz="0.013 0 0"/>
@@ -2796,7 +2796,7 @@
   <gazebo reference="hand_little_flex_1_link">
      <material>Gazebo/Black</material>
   </gazebo>
-  <joint name="hand_little_virtual_2_joint"type="revolute">
+  <joint name="hand_little_virtual_2_joint" type="revolute">
     <parent link="hand_little_flex_1_link"/>
     <child  link="hand_little_virtual_2_link"/>
     <origin rpy="0 0 0" xyz="0.009 0  0"/>
@@ -2829,7 +2829,7 @@
   <gazebo reference="hand_little_virtual_2_link">
     <material>Gazebo/Black</material>
   </gazebo>
-  <joint name="hand_little_flex_2_joint"type="revolute">
+  <joint name="hand_little_flex_2_joint" type="revolute">
     <parent link="hand_little_virtual_2_link"/>
     <child  link="hand_little_flex_2_link"/>
     <origin rpy="0 0 0" xyz="0.013 0 0"/>
@@ -2861,7 +2861,7 @@
   <gazebo reference="hand_little_flex_2_link">
      <material>Gazebo/Black</material>
   </gazebo>
-  <joint name="hand_little_virtual_3_joint"type="revolute">
+  <joint name="hand_little_virtual_3_joint" type="revolute">
     <parent link="hand_little_flex_2_link"/>
     <child  link="hand_little_virtual_3_link"/>
     <origin rpy="0 0 0" xyz="0.009 0  0"/>
@@ -2894,7 +2894,7 @@
   <gazebo reference="hand_little_virtual_3_link">
     <material>Gazebo/Black</material>
   </gazebo>
-  <joint name="hand_little_flex_3_joint"type="revolute">
+  <joint name="hand_little_flex_3_joint" type="revolute">
     <parent link="hand_little_virtual_3_link"/>
     <child  link="hand_little_flex_3_link"/>
     <origin rpy="0 0 0" xyz="0.013 0 0"/>
@@ -3339,7 +3339,7 @@
         <scale_factor>3.0</scale_factor>
        </virtualJoint>
     </plugin>
-    <plugin filename="libgazebo_underactuated_finger.so"name="gazebo_hand_index">
+    <plugin filename="libgazebo_underactuated_finger.so" name="gazebo_hand_index">
       <actuatedJoint>hand_index_joint</actuatedJoint>
        <virtualJoint>
         <name>hand_index_abd_joint</name>
@@ -3389,7 +3389,7 @@
         <scale_factor>4.0</scale_factor>
        </virtualJoint>
     </plugin>
-    <plugin filename="libgazebo_underactuated_finger.so"name="gazebo_hand_ring">
+    <plugin filename="libgazebo_underactuated_finger.so" name="gazebo_hand_ring">
       <actuatedJoint>hand_mrl_joint</actuatedJoint>
        <virtualJoint>
         <name>hand_ring_flex_1_joint</name>
@@ -3412,7 +3412,7 @@
         <scale_factor>4.0</scale_factor>
        </virtualJoint>
     </plugin>
-    <plugin filename="libgazebo_underactuated_finger.so"name="gazebo_hand_little">
+    <plugin filename="libgazebo_underactuated_finger.so" name="gazebo_hand_little">
       <actuatedJoint>hand_mrl_joint</actuatedJoint>
        <virtualJoint>
         <name>hand_little_flex_1_joint</name>
@@ -3437,16 +3437,16 @@
     </plugin>
   </gazebo>
   <!--
-  <joint name="hand_safety_box_joint"type="fixed">
+  <joint name="hand_safety_box_joint" type="fixed">
     <parent link="wrist_ft_tool_link"/>
     <child link="hand_safety_box"/>
     <origin rpy="0 0 0" xyz="0.1 0.02 0.02"/>
   </joint>
    <link name="hand_safety_box">
     <inertial>
-      <origin rpy="0 0 0"xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <mass value="0.0001"/>
-      <inertia ixx="0.0001"ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
     </inertial>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -3478,7 +3478,7 @@
       </geometry>
     </collision>
   </link>
-  <joint name="wrist_ft_joint"type="fixed">
+  <joint name="wrist_ft_joint" type="fixed">
     <parent link="arm_tool_link"/>
     <child link="wrist_ft_link"/>
     <origin rpy="1.57079632679 0 1.57079632679" xyz="0.00785 0 0"/>
@@ -3492,7 +3492,7 @@
       <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
     </inertial>
     <visual>
-      <origin rpy="0 1.57079632679 0"xyz="0.0 0 0"/>
+      <origin rpy="0 1.57079632679 0" xyz="0.0 0 0"/>
       <geometry>
         <cylinder length="0.00975" radius="0.025"/>
       </geometry>
