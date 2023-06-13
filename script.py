@@ -39,8 +39,7 @@ import sys, argparse, numpy as np, time
 from robot import Robot
 from constraints import *
 from resolution import *
-
-import ortools
+from gtsp import *
 
 # PARSE ARGUMENTS
 defaultContext = "corbaserver"
@@ -68,11 +67,11 @@ class PartP72:
     rootJointType = "freeflyer"
 
 # THE ROBOT
-robot_test = Robot('./tiago.urdf', args) # CREATE THE ROBOT
-qneutral, removedJoints = robot_test.setNeutralPosition() # SET ITS NEUTRAL POSITION
+robot = Robot('./tiago.urdf', args) # CREATE THE ROBOT
+robot.setNeutralPosition() # SET ITS NEUTRAL POSITION
 
 # PROBLEM SOLVER
-ps = ProblemSolver(robot_test)
+ps = ProblemSolver(robot)
 ps.loadPlugin("manipulation-spline-gradient-based.so")
 
 # LOAD THE ROBOT INTO THE GUI
@@ -80,8 +79,8 @@ vf = ViewerFactory(ps)
 vf.loadRobotModel (Driller, "driller")
 vf.loadRobotModel (PartP72, "part")
 
-robot_test.readSRDF() # LOAD SRDF DATA AND SET SOME JOINT BOUNDS
-robot_test.disableCollisions() # DISABLE COLLISIONS
+robot.readSRDF() # LOAD SRDF DATA AND SET SOME JOINT BOUNDS
+robot.disableCollisions() # DISABLE COLLISIONS
 
 ### GENERATE VIRTUAL HANDLES
 print("generating virtual handles")
@@ -91,7 +90,7 @@ print("generating virtual handles")
 # GET REAL HANDLES
 all_handles = ps.getAvailable('handle')
 part_handles = part_handles = list(filter(lambda x: x.startswith("part/"), all_handles))
-holeCoords = robot_test.getHandlesCoords(part_handles)
+holeCoords = robot.getHandlesCoords(part_handles)
 
 # CLUSTER THEM
 iso_c = 4
@@ -108,15 +107,10 @@ clusters = s.solver.testIsoData(holeCoords, len(holeCoords), len(holeCoords[0]),
 
 # GET COORDINATES OF VIRTUAL ONES
 import pinocchio 
-
-virtualHolesOrigin = [np.array(cluster.centroid[:3]) for cluster in clusters]
-virtualHolesRPY = [pinocchio.rpy.matrixToRpy(pinocchio.Quaternion(np.array(cluster.centroid[3:])).normalized().matrix()) for cluster in clusters]
-virtualHoles = [("part/virtual_{}".format(str(hole)), clusters[hole].centroid[0], clusters[hole].centroid[1], clusters[hole].centroid[2], virtualHolesRPY[hole][0], virtualHolesRPY[hole][1], virtualHolesRPY[hole][2], "part/base_link") for hole in range(len(virtualHolesRPY))]
+virtualHandles = [c.centroid for c in clusters]
 
 # ADD THEM TO THE MODEL
-robot_test.addVirtualHandles(len(clusters), virtualHoles)
-# for i in range(len(clusters)):
-    # ps.robot.client.manipulation.robot.addHandle('part/base_link', "part/virtual_"+str(i), clusters[i].centroid)
+robot.addVirtualHandles(len(clusters), virtualHandles)
 
 # try:
 #     v = vf.createViewer()
@@ -127,11 +121,11 @@ robot_test.addVirtualHandles(len(clusters), virtualHoles)
 ### SETTING A FEW VARIABLES AND PARAMETERS
 
 # SETTING JOINT BOUNDS
-robot_test.defineVariousJointBounds()
+robot.defineVariousJointBounds()
 
 # HPP PARAMETERS
-#ps.selectPathValidation("Graph-Discretized", 0.05)
-ps.selectPathValidation("Graph-Dichotomy", 0)
+ps.selectPathValidation("Graph-Discretized", 0.05)
+#ps.selectPathValidation("Graph-Dichotomy", 0)
 #ps.selectPathValidation("Graph-Progressive", 0.02)
 ps.selectPathProjector("Progressive", 0.2)
 ps.addPathOptimizer("EnforceTransitionSemantic")
@@ -143,11 +137,11 @@ ps.setParameter("ManipulationPlanner/extendStep", 0.7)
 ps.setParameter("SteeringMethod/Carlike/turningRadius", 0.05)
 
 # STARTING POSITION
-robot_test.setStartingPosition()
+robot.setStartingPosition()
 
 
 ### DEFINING CONSTRAINTS
-ljs, lock_arm, lock_head, look_at_gripper, tool_gripper = createConstraints(ps, robot_test)
+ljs, lock_arm, lock_head, look_at_gripper, tool_gripper = createConstraints(ps, robot)
 
 
 ### BUILDING THE CONSTRAINT GRAPH
@@ -158,18 +152,16 @@ for hole in range(len(clusters)):
     part_handles.append("part/virtual_{}".format(str(hole)))
     all_handles.append("part/virtual_{}".format(str(hole)))
     virtual_handles.append("part/virtual_{}".format(str(hole)))
-# all_handles = ps.getAvailable('handle')
-# part_handles = part_handles = list(filter(lambda x: x.startswith("part/"), all_handles))
 
 # CONSTRAINT GRAPH FACTORY
-graph = ConsGraphFactory(robot_test, ps, all_handles, part_handles,
+graph = ConsGraphFactory(robot, ps, all_handles, part_handles,
                          ljs, lock_arm, lock_head, look_at_gripper, tool_gripper)
 # INITIALIZATION
 cproblem = ps.hppcorba.problem.getProblem()
 cgraph = cproblem.getConstraintGraph()
 graph.initialize()
 # a little test
-res,q0,err = graph.generateTargetConfig('move_base', robot_test.q0, robot_test.q0)
+res, robot.q0, err = graph.generateTargetConfig('move_base', robot.q0, robot.q0)
 assert(res)
 # GRAPH VALIDATION
 ConsGraphValidation(ps, cgraph)
@@ -178,14 +170,14 @@ ConsGraphValidation(ps, cgraph)
 ### PROBLEM RESOLUTION
 
 # FOV FILTER
-res, q, err = graph.applyNodeConstraints(robot_test.free, q0)
+res, q, err = graph.applyNodeConstraints(robot.free, robot.q0)
 assert res
-robot_test.setCurrentConfig(q)
-oMh, oMd = robot_test.hppcorba.robot.getJointsPosition(q, ["tiago/hand_tool_link", "driller/base_link"])
+robot.setCurrentConfig(q)
+oMh, oMd = robot.hppcorba.robot.getJointsPosition(q, ["tiago/hand_tool_link", "driller/base_link"])
 
 # INSTATEPLANNER
-armPlanner = createArmPlanner(ps, graph, robot_test)
-basePlanner = createBasePlanner(ps, graph, robot_test)
+armPlanner = createArmPlanner(ps, graph, robot)
+basePlanner = createBasePlanner(ps, graph, robot)
 
 # LOAD (OR CREATE) MOBILE BASE ROADMAP
 basePlannerUsePrecomputedRoadmap = False
@@ -223,17 +215,18 @@ configListType = List[configType]
 def shootPregraspConfig(handle: str, restConfig: List[float]) -> configType:
     res = False
     tries = 0
-    while (res is False) and (tries<100):
+    while (not res) and (tries<100):
         try: # get a config
             tries+=1
             if tries%10==0:
                 print("attempt ", tries)
-            q = robot_test.shootRandomConfig()
+            q = robot.shootRandomConfig()
             res, q, err = graph.generateTargetConfig(handle+" | pregrasp generation", restConfig, q)
-            if (res) and (robot_test.isConfigValid(q)[0] is False): # check it is collision-free
+            if (res) and (robot.isConfigValid(q)[0] is False): # check it is collision-free
                 # print("config not valid")
                 res = False
-        except:
+        except Exception as exc:
+            print(exc)
             res = False
             pass
     # if res and tries<=100:
@@ -253,7 +246,8 @@ def shootPregraspConfigs(handle: str, restConfig: List[float], nbConfigs: int, c
 print("shooting configurations on virtual handles")
 configsOnVirtual = []
 for handle in virtual_handles:
-    shootPregraspConfigs(handle, robot_test.q0, 10, configsOnVirtual)
+    # shootPregraspConfigs(handle, robot.q0, 10, configsOnVirtual)
+    shootPregraspConfigs(handle, robot.q0, 2, configsOnVirtual)
 id = 0
 for config in configsOnVirtual:
     config["name"] = "config_"+str(id)
@@ -271,15 +265,14 @@ for config in configsOnVirtual:
 # \rval whether handle can be reached from q
 def configReachesHandle(handle: str, q: List[float], qName: str, reachMatrix) -> None:
     try:
-        res, qh, err = graph.generateTargetConfig(handle+" | pregrasp generation", q, q)
-        if res and robot_test.isConfigValid(qh)[0]:
-            # reachMatrix[handle][qName] = {"reach": True, "q": qh}
+        # res, qh, err = graph.generateTargetConfig(handle+" | pregrasp generation", q, q)
+        res, qh, err = graph.generateTargetConfig("driller/drill_tip > "+handle+" | 0-0_01", q, q)
+        if res and robot.isConfigValid(qh)[0]:
+            # print("from  ", q, "  to  ", qh)
             reachMatrix[handle][qName] = qh
         else:
-            # reachMatrix[handle][qName] = {"reach": False, "q": []}
             reachMatrix[handle][qName] = None
     except:
-        # reachMatrix[handle][qName] = {"reach": False, "q": []}
         reachMatrix[handle][qName] = None
 
 reachesHandle = dict()
@@ -287,12 +280,12 @@ real_handles = list(filter(lambda x : not x.startswith("part/virtual"), part_han
 for handle in real_handles:
     reachesHandle[handle] = {}
     for config in configsOnVirtual:
-        # reachesHandle[handle][config["name"]] = {}
         configReachesHandle(handle, config["config"], config["name"], reachesHandle)
 
 # STRUCTURING THE DATA
 configHandles = []
 handleConfigs = dict()
+configClusters = []
 nbConfig = -1
 for h in real_handles:
     handleConfigs[h] = list()
@@ -301,45 +294,16 @@ for h in real_handles:
             nbConfig+=1
             configHandles.append({"hole":h, "q":reachesHandle[h][c["name"]]})
             handleConfigs[h].append(nbConfig)
+    configClusters.append(handleConfigs[h])
+
+# MANAGING UNREACHED TASKS
+for h in range(len(configClusters)):
+    if configClusters[h]==[]:
+        configHandles.append(shootPregraspConfig(real_handles[h], robot.q0))
+        configClusters[h].append(len(configHandles)-1)
 
 
-### COMPUTE APPROXIMATE COSTS
-
-def baseMoves(q1: List[float], q2: List[float]) -> bool:
-    return q1[0]!=q2[0] or q1[1]!=q2[1]
-
-# \goal compute the distance between two configurations
-# \param q1, q2 the considered configurations
-# \param jointSpeeds max speeds of the joints (for maxJointDiff)
-# \param weights weights given to the different joints (for jointL2dist)
-# \rval float the value of the given distance
-def baseL2dist(q1: List[float], q2: List[float]) -> float:
-    return abs(q2[0]-q1[0]) + abs(q2[1]-q1[1])
-
-def maxJointDiff(q1: List[float], q2: List[float], jointSpeeds: List[float]) -> float:
-    maxDist=  0
-    for i in range(12):
-        dist = abs( q1[4+i]-q2[4+i] ) / jointSpeeds[i]
-        if dist>maxDist:
-            maxDist = dist
-    return maxDist
-
-def jointL2dist(q1: List[float], q2: List[float], weights: List[float]) -> float:
-    dist = 0;
-    for i in range(12):
-        dist += weights[i] * (q1[4+i]-q2[4+i]) * (q1[4+i]-q2[4+i])
-    return sqrt(dist)
-
-def configDist(q1: List[float], q2: List[float], jointSpeeds: List[float],
-               baseMovement: bool) -> float:
-    res = 0
-    if baseMovement:
-        res += baseL2dist(q1, q2)
-        res += maxJointDiff(q1, q2,  jointSpeeds)
-        res += maxJointDiff(q1, q2, jointSpeeds)
-    else:
-        res += maxJointDiff(q1, q2, jointSpeeds)
-    return res
+### GTSP
 
 import yaml
 with open("/home/hvanoverlo/devel/jointVelocities.yaml", "r") as stream:
@@ -351,23 +315,114 @@ jointSpeeds = list()
 for elt in jointSpeedsYAML:
     jointSpeeds.append(float(jointSpeedsYAML[elt]))
 
-# approxDists = np.zeros((len(configHandles),len(configHandles)))
-approxDists = [[None]*len(configHandles)]*len(configHandles)
-for c1 in range(len(configHandles)):
-    for c2 in range(len(configHandles)):
-        approxDists[c1][c2] = configDist(configHandles[c1]["q"],
-                                         configHandles[c2]["q"],
-                                         jointSpeeds,
-                                         baseMoves(configHandles[c1]["q"],
-                                                   configHandles[c2]["q"]))
-print("approximate costs computed")
+def nodeIsInCluster(node, clusters):
+    clusIdx = 0
+    nbClus = len(clusters)
+    while clusIdx<nbClus and node not in clusters[clusIdx]:
+        clusIdx+=1
+    if clusIdx==nbClus:
+        print("node not found")
+    else:
+        return clusIdx
+
+def computeCostWithBase(q1, h1, q2, h2):
+    q1r = q1[:4]+robot.q0[4:]
+    res1, q1r, _ = graph.generateTargetConfig('move_base', robot.q0, q1r)
+    if res1:
+        q2r = q2[:4]+robot.q0[4:]
+        res2, q2r, _ = graph.generateTargetConfig('move_base', robot.q0, q2r)
+        if res2:
+            try:
+                p1 = wd(armPlanner.computePath(q1,[q1r]))
+                p2 = wd(basePlanner.computePath(q1r,[q2r]))
+                p3 = wd(armPlanner.computePath(q2r,[q2]))
+            except:
+                raise Exception("collision during path planning")
+            else:
+                ps.client.basic.problem.addPath(p1)
+                ps.client.basic.problem.addPath(p2)
+                ps.client.basic.problem.addPath(p3)
+                armCost = ps.pathLength(0)
+                armCost+=ps.pathLength(2)
+                baseCost = ps.pathLength(1)
+                ps.erasePath(2)
+                ps.erasePath(1)
+                ps.erasePath(0)
+                return baseCost, armCost
+
+def computeArmOnlyCost(q1, h1, q2, h2):
+    try:
+        p1 = wd(armPlanner.computePath(q1,[q2]))
+    except:
+        raise Exception("collision during path planning")
+    else:
+        ps.client.basic.problem.addPath(p1)
+        armCost = ps.pathLength(0)
+        ps.erasePath(0)
+    return armCost
+
+def updateGTSP(data, sol, clusters, configs):
+    # RETRIEVE GTSP ROUTE
+    print("retrieve gtsp sol from tsp one")
+    gtspSol = list()
+    clustersOrder = list()
+    idx = 0
+    clusId = nodeIsInCluster(sol[idx], clusters)
+    solValid = True
+    while solValid and len(gtspSol)<len(clusters):
+        if sol[idx+len(clusters[clusId])-1] in clusters[clusId]:
+            gtspSol.append(sol[idx])
+            clustersOrder.append(clusId)
+            idx = idx+len(clusters[clusId])
+            clusId = nodeIsInCluster(sol[idx], clusters)
+        else:
+            print("UNVALID SOLUTION")
+            solValid = False
+            return
+    if solValid:
+        gtspSol.append(gtspSol[0])
+        clustersOrder.append(clustersOrder[0])
+    # COMPUTE COSTS
+    print("compute costs")
+    solCosts = list()
+    for i in range(len(gtspSol)-1):
+        q1 = configs[gtspSol[i]]["q"]
+        h1 = configs[gtspSol[i]]["hole"]
+        q2 = configs[gtspSol[i+1]]["q"]
+        h2 = configs[gtspSol[i+1]]["hole"]
+        if baseMoves(q1, q2):
+            print("base moves")
+            baseCost, armCost = computeCostWithBase(q1, h1, q2, h2)
+            solCosts.append(baseCost+armCost)
+        else:
+            print("only arm")
+            armCost = computeArmOnlyCost(q1, h1, q2, h2)
+            solCosts.append(armCost)
+    # UPDATE COST MATRIX
+    print("update cost matrix")
+    for i in range(len(gtspSol)-1):
+        c1 = clustersOrder[i]
+        n1_index = clusters[c1].index(gtspSol[i])
+        n1 = clusters[c1][n1_index-1]
+        n2 = gtspSol[i+1]
+        print("old/new ratio :  ", data['distance_matrix'][n1][n2]/int(1000000*solCosts[i]))
+        data['distance_matrix'][n1][n2] = int(1000000*solCosts[i])
 
 
 
-
-
-
-
+# ROUTING MODEL
+print("solving the first GTSP")
+data0 = create_data_model(configHandles, configClusters, jointSpeeds)
+sol0 = list()
+for c in configClusters:
+    sol0+=c
+data1, sol1 = GTSPiteration(data0, sol0)
+# gtspData, firstSol = firstGTSPround(configHandles, configClusters, jointSpeeds)
+# print("second GTSP")
+# gtspData2, secondSol = GTSPiteration(gtspData, firstSol)
+# print("updating arc costs")
+# updateGTSP(gtspData2, secondSol, configClusters, configHandles)
+updateGTSP(data1, sol1, configClusters, configHandles)
 
 
 
@@ -406,7 +461,7 @@ def generatePathToHandle(handle, paths, initRest, initPregrasp):
                 tries+=1
                 if tries%10==0:
                     print("attempt ", tries)
-                q2 = robot_test.shootRandomConfig()
+                q2 = robot.shootRandomConfig()
                 res, q2, err = graph.generateTargetConfig(handle+" | pregrasp generation", initRest, q2)
                 if res:
                     # get the base configuration of the pregrasp configuration
@@ -442,7 +497,7 @@ def generateFirstPath(paths, handle, initRest):
             tries+=1
             if tries%10==0:
                 print("attempt ", tries)
-            q2 = robot_test.shootRandomConfig()
+            q2 = robot.shootRandomConfig()
             res, q2, err = graph.generateTargetConfig(handle+" | pregrasp generation", initRest, q2)
             if res:
                 # get the base configuration of the pregrasp configuration
