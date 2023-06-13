@@ -54,12 +54,12 @@ class Robot(Parent):
         pass
     def setNeutralPosition(self):
         crobot = self.hppcorba.problem.getProblem().robot()
-        qneutral = crobot.neutralConfiguration()
-        qneutral[self.rankInConfiguration['tiago/hand_thumb_abd_joint']] = 1.5707
-        qneutral[self.rankInConfiguration['tiago/hand_index_abd_joint']]  = 0.35
-        qneutral[self.rankInConfiguration['tiago/hand_middle_abd_joint']] = -0.1
-        qneutral[self.rankInConfiguration['tiago/hand_ring_abd_joint']]   = -0.2
-        qneutral[self.rankInConfiguration['tiago/hand_little_abd_joint']] = -0.35
+        self.qneutral = crobot.neutralConfiguration()
+        self.qneutral[self.rankInConfiguration['tiago/hand_thumb_abd_joint']] = 1.5707
+        self.qneutral[self.rankInConfiguration['tiago/hand_index_abd_joint']]  = 0.35
+        self.qneutral[self.rankInConfiguration['tiago/hand_middle_abd_joint']] = -0.1
+        self.qneutral[self.rankInConfiguration['tiago/hand_ring_abd_joint']]   = -0.2
+        self.qneutral[self.rankInConfiguration['tiago/hand_little_abd_joint']] = -0.35
         removedJoints = [
             'tiago/caster_back_left_1_joint',
             'tiago/caster_back_left_2_joint',
@@ -113,9 +113,8 @@ class Robot(Parent):
             'tiago/hand_thumb_virtual_2_joint',
             'tiago/hand_thumb_flex_2_joint',
         ]
-        crobot.removeJoints(removedJoints, qneutral)
+        crobot.removeJoints(removedJoints, self.qneutral)
         del crobot
-        return qneutral, removedJoints
     def readSRDF(self):
         self.insertRobotSRDFModel("tiago", "package://tiago_data/srdf/tiago.srdf")
         self.insertRobotSRDFModel("tiago", "package://tiago_data/srdf/pal_hey5_gripper.srdf")
@@ -158,12 +157,10 @@ class Robot(Parent):
     def getHandlesCoords(self, partHandles):
         return [Transform(self.getHandlePositionInJoint(handle)[1]).toTuple() for handle in partHandles]
     def addVirtualHandles(self, nbHandles, virtualHandlesCoords):
-        srdf_virtualHandles_fmt = """  <handle name="{}" clearance="0.05">\n <position xyz="{} {} {}" rpy="{} {} {}"/>\n <link name="{}"/>\n <mask>1 1 1 0 1 1</mask>\n </handle>\n\n"""
-        srdf_virtual_handles = """<robot name="P72">\n\n"""
-        for hole in range (nbHandles):
-            srdf_virtual_handles += srdf_virtualHandles_fmt.format(*virtualHandlesCoords[hole])
-        srdf_virtual_handles += "</robot>"
-        self.client.manipulation.robot.insertRobotSRDFModelFromString("", srdf_virtual_handles)
+        for i in range(nbHandles):
+            self.client.manipulation.robot.addHandle('part/base_link', "part/virtual_"+str(i),
+                                                     virtualHandlesCoords[i], 0.05,
+                                                     [True,True,True,False,True,True])
     def defineVariousJointBounds(self):
         self.joint_bounds = {}
         jointsToShrink = list(filter(lambda jn:jn.startswith("tiago/torso") or
