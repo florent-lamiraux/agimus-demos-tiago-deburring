@@ -63,7 +63,7 @@ def create_data_model(configurations, clusters, jointSpeeds):
                                                              jointSpeeds,
                                                              baseMoves(configurations[cluster[i]]["q"],
                                                                        configurations[j]["q"]))
-                data['distance_matrix'][cluster[i-1]][j] = int(100000000*data['distance_matrix'][cluster[i-1]][j])
+                data['distance_matrix'][cluster[i-1]][j] = int(100000*data['distance_matrix'][cluster[i-1]][j])
     data['num_vehicles'] = 1
     data['depot'] = 0
     return data
@@ -162,3 +162,100 @@ def GTSPiteration(data, initSol):
         print('Objective : ', solution.ObjectiveValue())
         route = get_route(solution, routing, manager)
     return data, route
+
+
+### UPDATE COST MATRIX
+
+def nodeIsInCluster(node, clusters):
+    clusIdx = 0
+    nbClus = len(clusters)
+    while clusIdx<nbClus and node not in clusters[clusIdx]:
+        clusIdx+=1
+    if clusIdx==nbClus:
+        print("node not found")
+    else:
+        return clusIdx
+
+def computeCostWithBase(q1, h1, q2, h2, armPlanner, basePlanner, graph, ps):
+    q1r = q1[:4]+robot.q0[4:]
+    res1, q1r, _ = graph.generateTargetConfig('move_base', robot.q0, q1r)
+    if res1:
+        q2r = q2[:4]+robot.q0[4:]
+        res2, q2r, _ = graph.generateTargetConfig('move_base', robot.q0, q2r)
+        if res2:
+            try:
+                p1 = wd(armPlanner.computePath(q1,[q1r]))
+                p2 = wd(basePlanner.computePath(q1r,[q2r]))
+                p3 = wd(armPlanner.computePath(q2r,[q2]))
+            except:
+                raise Exception("collision during path planning")
+            else:
+                ps.client.basic.problem.addPath(p1)
+                ps.client.basic.problem.addPath(p2)
+                ps.client.basic.problem.addPath(p3)
+                armCost = ps.pathLength(0)
+                armCost+=ps.pathLength(2)
+                baseCost = ps.pathLength(1)
+                ps.erasePath(2)
+                ps.erasePath(1)
+                ps.erasePath(0)
+                return baseCost, armCost
+
+def computeArmOnlyCost(q1, h1, q2, h2, armPlanner, ps):
+    try:
+        p1 = wd(armPlanner.computePath(q1,[q2]))
+    except:
+        raise Exception("collision during path planning")
+    else:
+        ps.client.basic.problem.addPath(p1)
+        armCost = ps.pathLength(0)
+        ps.erasePath(0)
+    return armCost
+
+def updateGTSP(data, sol, clusters, configs, armPlanner, basePlanner, graph, ps):
+    # RETRIEVE GTSP ROUTE
+    print("retrieve gtsp sol from tsp one")
+    gtspSol = list()
+    clustersOrder = list()
+    idx = 0
+    clusId = nodeIsInCluster(sol[idx], clusters)
+    solValid = True
+    while solValid and len(gtspSol)<len(clusters):
+        if sol[idx+len(clusters[clusId])-1] in clusters[clusId]:
+            gtspSol.append(sol[idx])
+            clustersOrder.append(clusId)
+            idx = idx+len(clusters[clusId])
+            clusId = nodeIsInCluster(sol[idx], clusters)
+        else:
+            print("UNVALID SOLUTION")
+            solValid = False
+            return
+    if solValid:
+        gtspSol.append(gtspSol[0])
+        clustersOrder.append(clustersOrder[0])
+    # COMPUTE COSTS
+    print("compute costs")
+    solCosts = list()
+    for i in range(len(gtspSol)-1):
+        q1 = configs[gtspSol[i]]["q"]
+        h1 = configs[gtspSol[i]]["hole"]
+        q2 = configs[gtspSol[i+1]]["q"]
+        h2 = configs[gtspSol[i+1]]["hole"]
+        if baseMoves(q1, q2):
+            print("base moves")
+            baseCost, armCost = computeCostWithBase(q1, h1, q2, h2,
+                                                    armPlanner, basePlanner, graph, ps)
+            solCosts.append(baseCost+armCost)
+        else:
+            print("only arm")
+            armCost = computeArmOnlyCost(q1, h1, q2, h2, armPlanner, ps)
+            solCosts.append(armCost)
+    # UPDATE COST MATRIX
+    print("update cost matrix")
+    for i in range(len(gtspSol)-1):
+        c1 = clustersOrder[i]
+        n1_index = clusters[c1].index(gtspSol[i])
+        n1 = clusters[c1][n1_index-1]
+        n2 = gtspSol[i+1]
+        print("old/new ratio :  ", data['distance_matrix'][n1][n2]/int(1000000*solCosts[i]))
+        data['distance_matrix'][n1][n2] = int(1000000*solCosts[i])
