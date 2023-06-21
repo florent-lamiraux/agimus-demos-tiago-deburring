@@ -23,12 +23,9 @@ tasks = list()
 for t in root[1:]:
     task = dict()
     task["name"] = t.attrib["name"]
-    # task["pos"] = t[1].text.split()
     task["pos"] = list(map(float, t[1].text.split()))
-    for coord in task["pos"]:
-        print(coord)
-        coord*=scaleCoeff
-        print(coord)
+    for i in range(3):
+        task["pos"][i]*=scaleCoeff
     task["rot"] = list(map(float, t[2].text.split()))
 
     r = np.array([np.array([np.cos(np.pi*task["rot"][3]/180), -np.sin(np.pi*task["rot"][3]/180), 0]),
