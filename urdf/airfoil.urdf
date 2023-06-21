@@ -1,0 +1,4058 @@
+<robot name="Airfoil">
+
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 -0.8" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="/home/hvanoverlo/devel/DensoAirfoil/objects/meshes/wing.stl" scale="0.003 0.003 0.003"/>
+      </geometry>
+       <material name="Green">
+         <color rgba="0.6 1. 0.65 1.0"/>
+       </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="/home/hvanoverlo/devel/DensoAirfoil/objects/meshes/wing.stl"  scale="0.003 0.003 0.003"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="2.2"/>
+      <origin xyz="0 0 -0.8" rpy="0 0 0"/>
+      <inertia ixx="0.1"  ixy="0"  ixz="0" iyy="0.1" iyz="0" izz="0.1" />
+    </inertial>
+  </link>
+
+  <link name="hole0001_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0001" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0001_link"/>
+    <origin xyz="0.04 0.0355 0.3475"  rpy="0.0 -0.0 2.5830872929516078"/>
+  </joint>
+  <link name="hole0002_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0002" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0002_link"/>
+    <origin xyz="0.08 0.0355 0.3475"  rpy="0.0 -0.0 2.5830872929516078"/>
+  </joint>
+  <link name="hole0003_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0003" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0003_link"/>
+    <origin xyz="0.12 0.0355 0.3475"  rpy="0.0 -0.0 2.5830872929516078"/>
+  </joint>
+  <link name="hole0004_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0004" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0004_link"/>
+    <origin xyz="0.16 0.0355 0.3475"  rpy="0.0 -0.0 2.5830872929516078"/>
+  </joint>
+  <link name="hole0005_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0005" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0005_link"/>
+    <origin xyz="0.2 0.0355 0.3475"  rpy="0.0 -0.0 2.5830872929516078"/>
+  </joint>
+  <link name="hole0006_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0006" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0006_link"/>
+    <origin xyz="0.24 0.0355 0.3475"  rpy="0.0 -0.0 2.5830872929516078"/>
+  </joint>
+  <link name="hole0007_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0007" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0007_link"/>
+    <origin xyz="0.28 0.0355 0.3475"  rpy="0.0 -0.0 2.5830872929516078"/>
+  </joint>
+  <link name="hole0008_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0008" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0008_link"/>
+    <origin xyz="0.32 0.0355 0.3475"  rpy="0.0 -0.0 2.5830872929516078"/>
+  </joint>
+  <link name="hole0009_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0009" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0009_link"/>
+    <origin xyz="0.36 0.0355 0.3475"  rpy="0.0 -0.0 2.5830872929516078"/>
+  </joint>
+  <link name="hole0010_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0010" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0010_link"/>
+    <origin xyz="0.4 0.0355 0.3475"  rpy="0.0 -0.0 2.5830872929516078"/>
+  </joint>
+  <link name="hole0011_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0011" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0011_link"/>
+    <origin xyz="0.44 0.0355 0.3475"  rpy="0.0 -0.0 2.5830872929516078"/>
+  </joint>
+  <link name="hole0012_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0012" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0012_link"/>
+    <origin xyz="0.48 0.0355 0.3475"  rpy="0.0 -0.0 2.5830872929516078"/>
+  </joint>
+  <link name="hole0013_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0013" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0013_link"/>
+    <origin xyz="0.52 0.0355 0.3475"  rpy="0.0 -0.0 2.5830872929516078"/>
+  </joint>
+  <link name="hole0014_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0014" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0014_link"/>
+    <origin xyz="0.56 0.0355 0.3475"  rpy="0.0 -0.0 2.5830872929516078"/>
+  </joint>
+  <link name="hole0015_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0015" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0015_link"/>
+    <origin xyz="0.6 0.0355 0.3475"  rpy="0.0 -0.0 2.5830872929516078"/>
+  </joint>
+  <link name="hole0016_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0016" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0016_link"/>
+    <origin xyz="0.64 0.0355 0.3475"  rpy="0.0 -0.0 2.5830872929516078"/>
+  </joint>
+  <link name="hole0017_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0017" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0017_link"/>
+    <origin xyz="0.68 0.0355 0.3475"  rpy="0.0 -0.0 2.5830872929516078"/>
+  </joint>
+  <link name="hole0018_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0018" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0018_link"/>
+    <origin xyz="0.72 0.0355 0.3475"  rpy="0.0 -0.0 2.5830872929516078"/>
+  </joint>
+  <link name="hole0019_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0019" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0019_link"/>
+    <origin xyz="0.76 0.0355 0.3475"  rpy="0.0 -0.0 2.5830872929516078"/>
+  </joint>
+  <link name="hole0020_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0020" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0020_link"/>
+    <origin xyz="0.8 0.0355 0.3475"  rpy="0.0 -0.0 2.5830872929516078"/>
+  </joint>
+  <link name="hole0021_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0021" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0021_link"/>
+    <origin xyz="0.84 0.0355 0.3475"  rpy="0.0 -0.0 2.5830872929516078"/>
+  </joint>
+  <link name="hole0022_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0022" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0022_link"/>
+    <origin xyz="0.88 0.0355 0.3475"  rpy="0.0 -0.0 2.5830872929516078"/>
+  </joint>
+  <link name="hole0023_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0023" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0023_link"/>
+    <origin xyz="0.92 0.0355 0.3475"  rpy="0.0 -0.0 2.5830872929516078"/>
+  </joint>
+  <link name="hole0024_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0024" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0024_link"/>
+    <origin xyz="0.96 0.0355 0.3475"  rpy="0.0 -0.0 2.5830872929516078"/>
+  </joint>
+  <link name="hole0025_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0025" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0025_link"/>
+    <origin xyz="0.04 0.056 0.3325"  rpy="0.0 -0.0 2.4469516112960497"/>
+  </joint>
+  <link name="hole0026_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0026" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0026_link"/>
+    <origin xyz="0.08 0.056 0.3325"  rpy="0.0 -0.0 2.4469516112960497"/>
+  </joint>
+  <link name="hole0027_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0027" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0027_link"/>
+    <origin xyz="0.12 0.056 0.3325"  rpy="0.0 -0.0 2.4469516112960497"/>
+  </joint>
+  <link name="hole0028_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0028" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0028_link"/>
+    <origin xyz="0.16 0.056 0.3325"  rpy="0.0 -0.0 2.4469516112960497"/>
+  </joint>
+  <link name="hole0029_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0029" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0029_link"/>
+    <origin xyz="0.2 0.056 0.3325"  rpy="0.0 -0.0 2.4469516112960497"/>
+  </joint>
+  <link name="hole0030_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0030" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0030_link"/>
+    <origin xyz="0.24 0.056 0.3325"  rpy="0.0 -0.0 2.4469516112960497"/>
+  </joint>
+  <link name="hole0031_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0031" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0031_link"/>
+    <origin xyz="0.28 0.056 0.3325"  rpy="0.0 -0.0 2.4469516112960497"/>
+  </joint>
+  <link name="hole0032_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0032" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0032_link"/>
+    <origin xyz="0.32 0.056 0.3325"  rpy="0.0 -0.0 2.4469516112960497"/>
+  </joint>
+  <link name="hole0033_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0033" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0033_link"/>
+    <origin xyz="0.36 0.056 0.3325"  rpy="0.0 -0.0 2.4469516112960497"/>
+  </joint>
+  <link name="hole0034_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0034" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0034_link"/>
+    <origin xyz="0.4 0.056 0.3325"  rpy="0.0 -0.0 2.4469516112960497"/>
+  </joint>
+  <link name="hole0035_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0035" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0035_link"/>
+    <origin xyz="0.44 0.056 0.3325"  rpy="0.0 -0.0 2.4469516112960497"/>
+  </joint>
+  <link name="hole0036_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0036" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0036_link"/>
+    <origin xyz="0.48 0.056 0.3325"  rpy="0.0 -0.0 2.4469516112960497"/>
+  </joint>
+  <link name="hole0037_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0037" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0037_link"/>
+    <origin xyz="0.52 0.056 0.3325"  rpy="0.0 -0.0 2.4469516112960497"/>
+  </joint>
+  <link name="hole0038_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0038" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0038_link"/>
+    <origin xyz="0.56 0.056 0.3325"  rpy="0.0 -0.0 2.4469516112960497"/>
+  </joint>
+  <link name="hole0039_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0039" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0039_link"/>
+    <origin xyz="0.6 0.056 0.3325"  rpy="0.0 -0.0 2.4469516112960497"/>
+  </joint>
+  <link name="hole0040_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0040" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0040_link"/>
+    <origin xyz="0.64 0.056 0.3325"  rpy="0.0 -0.0 2.4469516112960497"/>
+  </joint>
+  <link name="hole0041_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0041" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0041_link"/>
+    <origin xyz="0.68 0.056 0.3325"  rpy="0.0 -0.0 2.4469516112960497"/>
+  </joint>
+  <link name="hole0042_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0042" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0042_link"/>
+    <origin xyz="0.72 0.056 0.3325"  rpy="0.0 -0.0 2.4469516112960497"/>
+  </joint>
+  <link name="hole0043_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0043" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0043_link"/>
+    <origin xyz="0.76 0.056 0.3325"  rpy="0.0 -0.0 2.4469516112960497"/>
+  </joint>
+  <link name="hole0044_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0044" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0044_link"/>
+    <origin xyz="0.8 0.056 0.3325"  rpy="0.0 -0.0 2.4469516112960497"/>
+  </joint>
+  <link name="hole0045_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0045" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0045_link"/>
+    <origin xyz="0.84 0.056 0.3325"  rpy="0.0 -0.0 2.4469516112960497"/>
+  </joint>
+  <link name="hole0046_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0046" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0046_link"/>
+    <origin xyz="0.88 0.056 0.3325"  rpy="0.0 -0.0 2.4469516112960497"/>
+  </joint>
+  <link name="hole0047_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0047" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0047_link"/>
+    <origin xyz="0.92 0.056 0.3325"  rpy="0.0 -0.0 2.4469516112960497"/>
+  </joint>
+  <link name="hole0048_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0048" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0048_link"/>
+    <origin xyz="0.96 0.056 0.3325"  rpy="0.0 -0.0 2.4469516112960497"/>
+  </joint>
+  <link name="hole0049_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0049" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0049_link"/>
+    <origin xyz="0.04 0.07675 0.3125"  rpy="0.0 -0.0 2.303834612632515"/>
+  </joint>
+  <link name="hole0050_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0050" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0050_link"/>
+    <origin xyz="0.08 0.07675 0.3125"  rpy="0.0 -0.0 2.303834612632515"/>
+  </joint>
+  <link name="hole0051_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0051" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0051_link"/>
+    <origin xyz="0.12 0.07675 0.3125"  rpy="0.0 -0.0 2.303834612632515"/>
+  </joint>
+  <link name="hole0052_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0052" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0052_link"/>
+    <origin xyz="0.16 0.07675 0.3125"  rpy="0.0 -0.0 2.303834612632515"/>
+  </joint>
+  <link name="hole0053_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0053" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0053_link"/>
+    <origin xyz="0.2 0.07675 0.3125"  rpy="0.0 -0.0 2.303834612632515"/>
+  </joint>
+  <link name="hole0054_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0054" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0054_link"/>
+    <origin xyz="0.24 0.07675 0.3125"  rpy="0.0 -0.0 2.303834612632515"/>
+  </joint>
+  <link name="hole0055_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0055" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0055_link"/>
+    <origin xyz="0.28 0.07675 0.3125"  rpy="0.0 -0.0 2.303834612632515"/>
+  </joint>
+  <link name="hole0056_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0056" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0056_link"/>
+    <origin xyz="0.32 0.07675 0.3125"  rpy="0.0 -0.0 2.303834612632515"/>
+  </joint>
+  <link name="hole0057_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0057" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0057_link"/>
+    <origin xyz="0.36 0.07675 0.3125"  rpy="0.0 -0.0 2.303834612632515"/>
+  </joint>
+  <link name="hole0058_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0058" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0058_link"/>
+    <origin xyz="0.4 0.07675 0.3125"  rpy="0.0 -0.0 2.303834612632515"/>
+  </joint>
+  <link name="hole0059_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0059" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0059_link"/>
+    <origin xyz="0.44 0.07675 0.3125"  rpy="0.0 -0.0 2.303834612632515"/>
+  </joint>
+  <link name="hole0060_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0060" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0060_link"/>
+    <origin xyz="0.48 0.07675 0.3125"  rpy="0.0 -0.0 2.303834612632515"/>
+  </joint>
+  <link name="hole0061_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0061" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0061_link"/>
+    <origin xyz="0.52 0.07675 0.3125"  rpy="0.0 -0.0 2.303834612632515"/>
+  </joint>
+  <link name="hole0062_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0062" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0062_link"/>
+    <origin xyz="0.56 0.07675 0.3125"  rpy="0.0 -0.0 2.303834612632515"/>
+  </joint>
+  <link name="hole0063_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0063" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0063_link"/>
+    <origin xyz="0.6 0.0768 0.3125"  rpy="0.0 -0.0 2.303834612632515"/>
+  </joint>
+  <link name="hole0064_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0064" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0064_link"/>
+    <origin xyz="0.64 0.07675 0.3125"  rpy="0.0 -0.0 2.303834612632515"/>
+  </joint>
+  <link name="hole0065_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0065" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0065_link"/>
+    <origin xyz="0.68 0.07675 0.3125"  rpy="0.0 -0.0 2.303834612632515"/>
+  </joint>
+  <link name="hole0066_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0066" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0066_link"/>
+    <origin xyz="0.72 0.0768 0.3125"  rpy="0.0 -0.0 2.303834612632515"/>
+  </joint>
+  <link name="hole0067_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0067" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0067_link"/>
+    <origin xyz="0.76 0.07675 0.3125"  rpy="0.0 -0.0 2.303834612632515"/>
+  </joint>
+  <link name="hole0068_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0068" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0068_link"/>
+    <origin xyz="0.8 0.07675 0.3125"  rpy="0.0 -0.0 2.303834612632515"/>
+  </joint>
+  <link name="hole0069_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0069" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0069_link"/>
+    <origin xyz="0.84 0.07675 0.3125"  rpy="0.0 -0.0 2.303834612632515"/>
+  </joint>
+  <link name="hole0070_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0070" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0070_link"/>
+    <origin xyz="0.88 0.07675 0.3125"  rpy="0.0 -0.0 2.303834612632515"/>
+  </joint>
+  <link name="hole0071_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0071" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0071_link"/>
+    <origin xyz="0.92 0.07675 0.3125"  rpy="0.0 -0.0 2.303834612632515"/>
+  </joint>
+  <link name="hole0072_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0072" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0072_link"/>
+    <origin xyz="0.96 0.07675 0.3125"  rpy="0.0 -0.0 2.303834612632515"/>
+  </joint>
+  <link name="hole0073_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0073" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0073_link"/>
+    <origin xyz="0.04 0.095 0.2875"  rpy="0.0 -0.0 2.111848394913139"/>
+  </joint>
+  <link name="hole0074_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0074" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0074_link"/>
+    <origin xyz="0.08 0.095 0.2875"  rpy="0.0 -0.0 2.111848394913139"/>
+  </joint>
+  <link name="hole0075_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0075" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0075_link"/>
+    <origin xyz="0.12 0.095 0.2875"  rpy="0.0 -0.0 2.111848394913139"/>
+  </joint>
+  <link name="hole0076_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0076" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0076_link"/>
+    <origin xyz="0.16 0.095 0.2875"  rpy="0.0 -0.0 2.111848394913139"/>
+  </joint>
+  <link name="hole0077_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0077" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0077_link"/>
+    <origin xyz="0.2 0.095 0.2875"  rpy="0.0 -0.0 2.111848394913139"/>
+  </joint>
+  <link name="hole0078_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0078" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0078_link"/>
+    <origin xyz="0.24 0.095 0.2875"  rpy="0.0 -0.0 2.111848394913139"/>
+  </joint>
+  <link name="hole0079_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0079" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0079_link"/>
+    <origin xyz="0.28 0.095 0.2875"  rpy="0.0 -0.0 2.111848394913139"/>
+  </joint>
+  <link name="hole0080_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0080" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0080_link"/>
+    <origin xyz="0.32 0.095 0.2875"  rpy="0.0 -0.0 2.111848394913139"/>
+  </joint>
+  <link name="hole0081_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0081" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0081_link"/>
+    <origin xyz="0.36 0.095 0.2875"  rpy="0.0 -0.0 2.111848394913139"/>
+  </joint>
+  <link name="hole0082_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0082" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0082_link"/>
+    <origin xyz="0.4 0.095 0.2875"  rpy="0.0 -0.0 2.111848394913139"/>
+  </joint>
+  <link name="hole0083_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0083" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0083_link"/>
+    <origin xyz="0.44 0.095 0.2875"  rpy="0.0 -0.0 2.111848394913139"/>
+  </joint>
+  <link name="hole0084_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0084" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0084_link"/>
+    <origin xyz="0.48 0.095 0.2875"  rpy="0.0 -0.0 2.111848394913139"/>
+  </joint>
+  <link name="hole0085_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0085" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0085_link"/>
+    <origin xyz="0.52 0.095 0.2875"  rpy="0.0 -0.0 2.111848394913139"/>
+  </joint>
+  <link name="hole0086_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0086" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0086_link"/>
+    <origin xyz="0.56 0.095 0.2875"  rpy="0.0 -0.0 2.111848394913139"/>
+  </joint>
+  <link name="hole0087_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0087" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0087_link"/>
+    <origin xyz="0.6 0.095 0.2875"  rpy="0.0 -0.0 2.111848394913139"/>
+  </joint>
+  <link name="hole0088_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0088" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0088_link"/>
+    <origin xyz="0.64 0.095 0.2875"  rpy="0.0 -0.0 2.111848394913139"/>
+  </joint>
+  <link name="hole0089_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0089" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0089_link"/>
+    <origin xyz="0.68 0.095 0.2875"  rpy="0.0 -0.0 2.111848394913139"/>
+  </joint>
+  <link name="hole0090_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0090" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0090_link"/>
+    <origin xyz="0.72 0.095 0.2875"  rpy="0.0 -0.0 2.111848394913139"/>
+  </joint>
+  <link name="hole0091_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0091" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0091_link"/>
+    <origin xyz="0.76 0.095 0.2875"  rpy="0.0 -0.0 2.111848394913139"/>
+  </joint>
+  <link name="hole0092_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0092" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0092_link"/>
+    <origin xyz="0.8 0.095 0.2875"  rpy="0.0 -0.0 2.111848394913139"/>
+  </joint>
+  <link name="hole0093_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0093" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0093_link"/>
+    <origin xyz="0.84 0.095 0.2875"  rpy="0.0 -0.0 2.111848394913139"/>
+  </joint>
+  <link name="hole0094_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0094" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0094_link"/>
+    <origin xyz="0.88 0.095 0.2875"  rpy="0.0 -0.0 2.111848394913139"/>
+  </joint>
+  <link name="hole0095_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0095" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0095_link"/>
+    <origin xyz="0.92 0.095 0.2875"  rpy="0.0 -0.0 2.111848394913139"/>
+  </joint>
+  <link name="hole0096_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0096" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0096_link"/>
+    <origin xyz="0.96 0.095 0.2875"  rpy="0.0 -0.0 2.111848394913139"/>
+  </joint>
+  <link name="hole0097_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0097" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0097_link"/>
+    <origin xyz="0.04 0.10875 0.2625"  rpy="0.0 -0.0 2.035053907825388"/>
+  </joint>
+  <link name="hole0098_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0098" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0098_link"/>
+    <origin xyz="0.08 0.10875 0.2625"  rpy="0.0 -0.0 2.035053907825388"/>
+  </joint>
+  <link name="hole0099_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0099" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0099_link"/>
+    <origin xyz="0.12 0.10875 0.2625"  rpy="0.0 -0.0 2.035053907825388"/>
+  </joint>
+  <link name="hole0100_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0100" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0100_link"/>
+    <origin xyz="0.16 0.10875 0.2625"  rpy="0.0 -0.0 2.035053907825388"/>
+  </joint>
+  <link name="hole0101_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0101" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0101_link"/>
+    <origin xyz="0.2 0.10875 0.2625"  rpy="0.0 -0.0 2.035053907825388"/>
+  </joint>
+  <link name="hole0102_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0102" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0102_link"/>
+    <origin xyz="0.24 0.10875 0.2625"  rpy="0.0 -0.0 2.035053907825388"/>
+  </joint>
+  <link name="hole0103_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0103" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0103_link"/>
+    <origin xyz="0.28 0.10875 0.2625"  rpy="0.0 -0.0 2.035053907825388"/>
+  </joint>
+  <link name="hole0104_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0104" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0104_link"/>
+    <origin xyz="0.32 0.10875 0.2625"  rpy="0.0 -0.0 2.035053907825388"/>
+  </joint>
+  <link name="hole0105_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0105" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0105_link"/>
+    <origin xyz="0.36 0.10875 0.2625"  rpy="0.0 -0.0 2.035053907825388"/>
+  </joint>
+  <link name="hole0106_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0106" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0106_link"/>
+    <origin xyz="0.4 0.10875 0.2625"  rpy="0.0 -0.0 2.035053907825388"/>
+  </joint>
+  <link name="hole0107_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0107" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0107_link"/>
+    <origin xyz="0.44 0.10875 0.2625"  rpy="0.0 -0.0 2.035053907825388"/>
+  </joint>
+  <link name="hole0108_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0108" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0108_link"/>
+    <origin xyz="0.48 0.10875 0.2625"  rpy="0.0 -0.0 2.035053907825388"/>
+  </joint>
+  <link name="hole0109_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0109" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0109_link"/>
+    <origin xyz="0.52 0.10875 0.2625"  rpy="0.0 -0.0 2.035053907825388"/>
+  </joint>
+  <link name="hole0110_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0110" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0110_link"/>
+    <origin xyz="0.56 0.10875 0.2625"  rpy="0.0 -0.0 2.035053907825388"/>
+  </joint>
+  <link name="hole0111_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0111" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0111_link"/>
+    <origin xyz="0.6 0.10875 0.2625"  rpy="0.0 -0.0 2.035053907825388"/>
+  </joint>
+  <link name="hole0112_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0112" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0112_link"/>
+    <origin xyz="0.64 0.10875 0.2625"  rpy="0.0 -0.0 2.035053907825388"/>
+  </joint>
+  <link name="hole0113_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0113" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0113_link"/>
+    <origin xyz="0.68 0.10875 0.2625"  rpy="0.0 -0.0 2.035053907825388"/>
+  </joint>
+  <link name="hole0114_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0114" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0114_link"/>
+    <origin xyz="0.72 0.10875 0.2625"  rpy="0.0 -0.0 2.035053907825388"/>
+  </joint>
+  <link name="hole0115_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0115" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0115_link"/>
+    <origin xyz="0.76 0.10875 0.2625"  rpy="0.0 -0.0 2.035053907825388"/>
+  </joint>
+  <link name="hole0116_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0116" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0116_link"/>
+    <origin xyz="0.8 0.10875 0.2625"  rpy="0.0 -0.0 2.035053907825388"/>
+  </joint>
+  <link name="hole0117_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0117" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0117_link"/>
+    <origin xyz="0.84 0.10875 0.2625"  rpy="0.0 -0.0 2.035053907825388"/>
+  </joint>
+  <link name="hole0118_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0118" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0118_link"/>
+    <origin xyz="0.88 0.10875 0.2625"  rpy="0.0 -0.0 2.035053907825388"/>
+  </joint>
+  <link name="hole0119_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0119" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0119_link"/>
+    <origin xyz="0.92 0.10875 0.2625"  rpy="0.0 -0.0 2.035053907825388"/>
+  </joint>
+  <link name="hole0120_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0120" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0120_link"/>
+    <origin xyz="0.96 0.10875 0.2625"  rpy="0.0 -0.0 2.035053907825388"/>
+  </joint>
+  <link name="hole0121_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0121" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0121_link"/>
+    <origin xyz="0.04 0.12125 0.235"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0122_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0122" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0122_link"/>
+    <origin xyz="0.08 0.12125 0.235"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0123_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0123" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0123_link"/>
+    <origin xyz="0.12 0.12125 0.235"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0124_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0124" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0124_link"/>
+    <origin xyz="0.16 0.12125 0.235"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0125_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0125" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0125_link"/>
+    <origin xyz="0.2 0.12125 0.235"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0126_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0126" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0126_link"/>
+    <origin xyz="0.24 0.12125 0.235"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0127_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0127" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0127_link"/>
+    <origin xyz="0.28 0.12125 0.235"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0128_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0128" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0128_link"/>
+    <origin xyz="0.32 0.12125 0.235"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0129_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0129" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0129_link"/>
+    <origin xyz="0.36 0.12125 0.235"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0130_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0130" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0130_link"/>
+    <origin xyz="0.4 0.12125 0.235"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0131_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0131" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0131_link"/>
+    <origin xyz="0.44 0.12125 0.235"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0132_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0132" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0132_link"/>
+    <origin xyz="0.48 0.12125 0.235"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0133_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0133" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0133_link"/>
+    <origin xyz="0.52 0.12125 0.235"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0134_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0134" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0134_link"/>
+    <origin xyz="0.56 0.12125 0.235"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0135_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0135" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0135_link"/>
+    <origin xyz="0.6 0.12125 0.235"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0136_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0136" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0136_link"/>
+    <origin xyz="0.64 0.12125 0.235"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0137_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0137" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0137_link"/>
+    <origin xyz="0.68 0.12125 0.235"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0138_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0138" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0138_link"/>
+    <origin xyz="0.72 0.12125 0.235"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0139_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0139" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0139_link"/>
+    <origin xyz="0.76 0.12125 0.235"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0140_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0140" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0140_link"/>
+    <origin xyz="0.8 0.12125 0.235"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0141_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0141" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0141_link"/>
+    <origin xyz="0.84 0.12125 0.235"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0142_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0142" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0142_link"/>
+    <origin xyz="0.88 0.12125 0.235"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0143_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0143" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0143_link"/>
+    <origin xyz="0.92 0.12125 0.235"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0144_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0144" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0144_link"/>
+    <origin xyz="0.96 0.12125 0.235"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0145_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0145" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0145_link"/>
+    <origin xyz="0.04 0.13525 0.205"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0146_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0146" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0146_link"/>
+    <origin xyz="0.08 0.13525 0.205"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0147_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0147" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0147_link"/>
+    <origin xyz="0.12 0.13525 0.205"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0148_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0148" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0148_link"/>
+    <origin xyz="0.16 0.13525 0.205"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0149_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0149" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0149_link"/>
+    <origin xyz="0.2 0.13525 0.205"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0150_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0150" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0150_link"/>
+    <origin xyz="0.24 0.13525 0.205"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0151_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0151" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0151_link"/>
+    <origin xyz="0.28 0.13525 0.205"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0152_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0152" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0152_link"/>
+    <origin xyz="0.32 0.13525 0.205"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0153_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0153" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0153_link"/>
+    <origin xyz="0.36 0.13525 0.205"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0154_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0154" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0154_link"/>
+    <origin xyz="0.4 0.13525 0.205"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0155_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0155" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0155_link"/>
+    <origin xyz="0.44 0.13525 0.205"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0156_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0156" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0156_link"/>
+    <origin xyz="0.48 0.13525 0.205"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0157_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0157" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0157_link"/>
+    <origin xyz="0.52 0.13525 0.205"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0158_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0158" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0158_link"/>
+    <origin xyz="0.56 0.13525 0.205"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0159_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0159" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0159_link"/>
+    <origin xyz="0.6 0.13525 0.205"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0160_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0160" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0160_link"/>
+    <origin xyz="0.64 0.13525 0.205"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0161_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0161" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0161_link"/>
+    <origin xyz="0.68 0.13525 0.205"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0162_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0162" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0162_link"/>
+    <origin xyz="0.72 0.13525 0.205"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0163_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0163" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0163_link"/>
+    <origin xyz="0.76 0.13525 0.205"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0164_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0164" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0164_link"/>
+    <origin xyz="0.8 0.13525 0.205"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0165_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0165" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0165_link"/>
+    <origin xyz="0.84 0.13525 0.205"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0166_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0166" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0166_link"/>
+    <origin xyz="0.88 0.13525 0.205"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0167_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0167" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0167_link"/>
+    <origin xyz="0.92 0.13525 0.205"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0168_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0168" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0168_link"/>
+    <origin xyz="0.96 0.13525 0.205"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0169_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0169" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0169_link"/>
+    <origin xyz="0.04 0.14875 0.175"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0170_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0170" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0170_link"/>
+    <origin xyz="0.08 0.14875 0.175"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0171_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0171" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0171_link"/>
+    <origin xyz="0.12 0.14875 0.175"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0172_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0172" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0172_link"/>
+    <origin xyz="0.16 0.14875 0.175"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0173_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0173" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0173_link"/>
+    <origin xyz="0.2 0.14875 0.175"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0174_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0174" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0174_link"/>
+    <origin xyz="0.24 0.14875 0.175"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0175_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0175" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0175_link"/>
+    <origin xyz="0.28 0.14875 0.175"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0176_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0176" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0176_link"/>
+    <origin xyz="0.32 0.14875 0.175"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0177_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0177" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0177_link"/>
+    <origin xyz="0.36 0.14875 0.175"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0178_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0178" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0178_link"/>
+    <origin xyz="0.4 0.14875 0.175"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0179_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0179" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0179_link"/>
+    <origin xyz="0.44 0.14875 0.175"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0180_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0180" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0180_link"/>
+    <origin xyz="0.48 0.14875 0.175"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0181_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0181" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0181_link"/>
+    <origin xyz="0.52 0.14875 0.175"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0182_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0182" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0182_link"/>
+    <origin xyz="0.56 0.14875 0.175"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0183_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0183" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0183_link"/>
+    <origin xyz="0.6 0.14875 0.175"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0184_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0184" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0184_link"/>
+    <origin xyz="0.64 0.14875 0.175"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0185_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0185" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0185_link"/>
+    <origin xyz="0.68 0.14875 0.175"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0186_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0186" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0186_link"/>
+    <origin xyz="0.72 0.14875 0.175"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0187_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0187" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0187_link"/>
+    <origin xyz="0.76 0.14875 0.175"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0188_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0188" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0188_link"/>
+    <origin xyz="0.8 0.14875 0.175"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0189_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0189" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0189_link"/>
+    <origin xyz="0.84 0.14875 0.175"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0190_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0190" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0190_link"/>
+    <origin xyz="0.88 0.14875 0.175"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0191_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0191" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0191_link"/>
+    <origin xyz="0.92 0.14875 0.175"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0192_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0192" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0192_link"/>
+    <origin xyz="0.96 0.14875 0.175"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0193_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0193" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0193_link"/>
+    <origin xyz="0.04 0.16225 0.145"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0194_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0194" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0194_link"/>
+    <origin xyz="0.08 0.16225 0.145"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0195_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0195" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0195_link"/>
+    <origin xyz="0.12 0.16225 0.145"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0196_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0196" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0196_link"/>
+    <origin xyz="0.16 0.16225 0.145"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0197_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0197" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0197_link"/>
+    <origin xyz="0.2 0.16225 0.145"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0198_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0198" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0198_link"/>
+    <origin xyz="0.24 0.16225 0.145"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0199_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0199" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0199_link"/>
+    <origin xyz="0.28 0.16225 0.145"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0200_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0200" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0200_link"/>
+    <origin xyz="0.32 0.16225 0.145"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0201_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0201" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0201_link"/>
+    <origin xyz="0.36 0.16225 0.145"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0202_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0202" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0202_link"/>
+    <origin xyz="0.4 0.16225 0.145"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0203_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0203" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0203_link"/>
+    <origin xyz="0.44 0.16225 0.145"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0204_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0204" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0204_link"/>
+    <origin xyz="0.48 0.16225 0.145"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0205_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0205" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0205_link"/>
+    <origin xyz="0.52 0.16225 0.145"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0206_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0206" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0206_link"/>
+    <origin xyz="0.56 0.16225 0.145"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0207_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0207" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0207_link"/>
+    <origin xyz="0.6 0.16225 0.145"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0208_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0208" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0208_link"/>
+    <origin xyz="0.64 0.16225 0.145"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0209_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0209" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0209_link"/>
+    <origin xyz="0.68 0.16225 0.145"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0210_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0210" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0210_link"/>
+    <origin xyz="0.72 0.16225 0.145"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0211_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0211" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0211_link"/>
+    <origin xyz="0.76 0.16225 0.145"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0212_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0212" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0212_link"/>
+    <origin xyz="0.8 0.16225 0.145"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0213_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0213" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0213_link"/>
+    <origin xyz="0.84 0.16225 0.145"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0214_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0214" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0214_link"/>
+    <origin xyz="0.88 0.16225 0.145"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0215_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0215" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0215_link"/>
+    <origin xyz="0.92 0.16225 0.145"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0216_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0216" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0216_link"/>
+    <origin xyz="0.96 0.16225 0.145"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0217_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0217" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0217_link"/>
+    <origin xyz="0.04 0.17575 0.115"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0218_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0218" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0218_link"/>
+    <origin xyz="0.08 0.17575 0.115"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0219_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0219" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0219_link"/>
+    <origin xyz="0.12 0.17575 0.115"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0220_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0220" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0220_link"/>
+    <origin xyz="0.16 0.17575 0.115"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0221_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0221" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0221_link"/>
+    <origin xyz="0.2 0.17575 0.115"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0222_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0222" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0222_link"/>
+    <origin xyz="0.24 0.17575 0.115"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0223_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0223" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0223_link"/>
+    <origin xyz="0.28 0.17575 0.115"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0224_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0224" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0224_link"/>
+    <origin xyz="0.32 0.17575 0.115"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0225_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0225" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0225_link"/>
+    <origin xyz="0.36 0.17575 0.115"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0226_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0226" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0226_link"/>
+    <origin xyz="0.4 0.17575 0.115"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0227_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0227" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0227_link"/>
+    <origin xyz="0.44 0.17575 0.115"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0228_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0228" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0228_link"/>
+    <origin xyz="0.48 0.17575 0.115"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0229_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0229" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0229_link"/>
+    <origin xyz="0.52 0.17575 0.115"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0230_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0230" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0230_link"/>
+    <origin xyz="0.56 0.17575 0.115"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0231_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0231" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0231_link"/>
+    <origin xyz="0.6 0.17575 0.115"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0232_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0232" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0232_link"/>
+    <origin xyz="0.64 0.17575 0.115"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0233_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0233" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0233_link"/>
+    <origin xyz="0.68 0.17575 0.115"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0234_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0234" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0234_link"/>
+    <origin xyz="0.72 0.17575 0.115"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0235_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0235" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0235_link"/>
+    <origin xyz="0.76 0.17575 0.115"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0236_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0236" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0236_link"/>
+    <origin xyz="0.8 0.17575 0.115"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0237_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0237" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0237_link"/>
+    <origin xyz="0.84 0.17575 0.115"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0238_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0238" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0238_link"/>
+    <origin xyz="0.88 0.17575 0.115"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0239_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0239" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0239_link"/>
+    <origin xyz="0.92 0.17575 0.115"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0240_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0240" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0240_link"/>
+    <origin xyz="0.96 0.17575 0.115"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0241_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0241" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0241_link"/>
+    <origin xyz="0.04 0.18925 0.085"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0242_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0242" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0242_link"/>
+    <origin xyz="0.08 0.18925 0.085"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0243_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0243" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0243_link"/>
+    <origin xyz="0.12 0.18925 0.085"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0244_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0244" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0244_link"/>
+    <origin xyz="0.16 0.18925 0.085"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0245_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0245" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0245_link"/>
+    <origin xyz="0.2 0.18925 0.085"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0246_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0246" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0246_link"/>
+    <origin xyz="0.24 0.18925 0.085"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0247_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0247" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0247_link"/>
+    <origin xyz="0.28 0.18925 0.085"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0248_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0248" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0248_link"/>
+    <origin xyz="0.32 0.18925 0.085"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0249_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0249" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0249_link"/>
+    <origin xyz="0.36 0.18925 0.085"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0250_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0250" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0250_link"/>
+    <origin xyz="0.4 0.18925 0.085"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0251_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0251" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0251_link"/>
+    <origin xyz="0.44 0.18925 0.085"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0252_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0252" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0252_link"/>
+    <origin xyz="0.48 0.18925 0.085"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0253_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0253" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0253_link"/>
+    <origin xyz="0.52 0.18925 0.085"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0254_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0254" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0254_link"/>
+    <origin xyz="0.56 0.18925 0.085"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0255_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0255" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0255_link"/>
+    <origin xyz="0.6 0.18925 0.085"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0256_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0256" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0256_link"/>
+    <origin xyz="0.64 0.18925 0.085"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0257_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0257" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0257_link"/>
+    <origin xyz="0.68 0.18925 0.085"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0258_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0258" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0258_link"/>
+    <origin xyz="0.72 0.18925 0.085"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0259_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0259" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0259_link"/>
+    <origin xyz="0.76 0.18925 0.085"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0260_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0260" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0260_link"/>
+    <origin xyz="0.8 0.18925 0.085"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0261_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0261" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0261_link"/>
+    <origin xyz="0.84 0.18925 0.085"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0262_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0262" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0262_link"/>
+    <origin xyz="0.88 0.18925 0.085"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0263_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0263" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0263_link"/>
+    <origin xyz="0.92 0.18925 0.085"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0264_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0264" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0264_link"/>
+    <origin xyz="0.96 0.18925 0.085"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0265_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0265" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0265_link"/>
+    <origin xyz="0.04 0.20275 0.055"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0266_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0266" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0266_link"/>
+    <origin xyz="0.08 0.20275 0.055"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0267_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0267" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0267_link"/>
+    <origin xyz="0.12 0.20275 0.055"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0268_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0268" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0268_link"/>
+    <origin xyz="0.16 0.20275 0.055"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0269_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0269" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0269_link"/>
+    <origin xyz="0.2 0.20275 0.055"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0270_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0270" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0270_link"/>
+    <origin xyz="0.24 0.20275 0.055"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0271_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0271" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0271_link"/>
+    <origin xyz="0.28 0.20275 0.055"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0272_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0272" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0272_link"/>
+    <origin xyz="0.32 0.20275 0.055"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0273_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0273" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0273_link"/>
+    <origin xyz="0.36 0.20275 0.055"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0274_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0274" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0274_link"/>
+    <origin xyz="0.4 0.20275 0.055"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0275_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0275" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0275_link"/>
+    <origin xyz="0.44 0.20275 0.055"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0276_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0276" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0276_link"/>
+    <origin xyz="0.48 0.20275 0.055"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0277_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0277" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0277_link"/>
+    <origin xyz="0.52 0.20275 0.055"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0278_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0278" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0278_link"/>
+    <origin xyz="0.56 0.20275 0.055"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0279_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0279" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0279_link"/>
+    <origin xyz="0.6 0.20275 0.055"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0280_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0280" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0280_link"/>
+    <origin xyz="0.64 0.20275 0.055"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0281_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0281" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0281_link"/>
+    <origin xyz="0.68 0.20275 0.055"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0282_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0282" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0282_link"/>
+    <origin xyz="0.72 0.20275 0.055"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0283_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0283" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0283_link"/>
+    <origin xyz="0.76 0.20275 0.055"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0284_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0284" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0284_link"/>
+    <origin xyz="0.8 0.20275 0.055"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0285_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0285" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0285_link"/>
+    <origin xyz="0.84 0.20275 0.055"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0286_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0286" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0286_link"/>
+    <origin xyz="0.88 0.20275 0.055"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0287_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0287" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0287_link"/>
+    <origin xyz="0.92 0.20275 0.055"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0288_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0288" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0288_link"/>
+    <origin xyz="0.96 0.20275 0.055"  rpy="0.0 -0.0 1.9931660057775245"/>
+  </joint>
+  <link name="hole0289_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0289" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0289_link"/>
+    <origin xyz="0.04 -0.033 0.3495"  rpy="0.0 0.0 -2.522000769131806"/>
+  </joint>
+  <link name="hole0290_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0290" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0290_link"/>
+    <origin xyz="0.08 -0.033 0.3495"  rpy="0.0 0.0 -2.522000769131806"/>
+  </joint>
+  <link name="hole0291_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0291" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0291_link"/>
+    <origin xyz="0.12 -0.033 0.3495"  rpy="0.0 0.0 -2.522000769131806"/>
+  </joint>
+  <link name="hole0292_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0292" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0292_link"/>
+    <origin xyz="0.16 -0.033 0.3495"  rpy="0.0 0.0 -2.522000769131806"/>
+  </joint>
+  <link name="hole0293_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0293" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0293_link"/>
+    <origin xyz="0.2 -0.033 0.3495"  rpy="0.0 0.0 -2.522000769131806"/>
+  </joint>
+  <link name="hole0294_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0294" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0294_link"/>
+    <origin xyz="0.24 -0.033 0.3495"  rpy="0.0 0.0 -2.522000769131806"/>
+  </joint>
+  <link name="hole0295_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0295" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0295_link"/>
+    <origin xyz="0.28 -0.033 0.3495"  rpy="0.0 0.0 -2.522000769131806"/>
+  </joint>
+  <link name="hole0296_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0296" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0296_link"/>
+    <origin xyz="0.32 -0.033 0.3495"  rpy="0.0 0.0 -2.522000769131806"/>
+  </joint>
+  <link name="hole0297_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0297" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0297_link"/>
+    <origin xyz="0.36 -0.033 0.3495"  rpy="0.0 0.0 -2.522000769131806"/>
+  </joint>
+  <link name="hole0298_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0298" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0298_link"/>
+    <origin xyz="0.4 -0.033 0.3495"  rpy="0.0 0.0 -2.522000769131806"/>
+  </joint>
+  <link name="hole0299_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0299" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0299_link"/>
+    <origin xyz="0.44 -0.033 0.3495"  rpy="0.0 0.0 -2.522000769131806"/>
+  </joint>
+  <link name="hole0300_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0300" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0300_link"/>
+    <origin xyz="0.48 -0.033 0.3495"  rpy="0.0 0.0 -2.522000769131806"/>
+  </joint>
+  <link name="hole0301_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0301" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0301_link"/>
+    <origin xyz="0.52 -0.033 0.3495"  rpy="0.0 0.0 -2.522000769131806"/>
+  </joint>
+  <link name="hole0302_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0302" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0302_link"/>
+    <origin xyz="0.56 -0.033 0.3495"  rpy="0.0 0.0 -2.522000769131806"/>
+  </joint>
+  <link name="hole0303_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0303" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0303_link"/>
+    <origin xyz="0.6 -0.033 0.3495"  rpy="0.0 0.0 -2.522000769131806"/>
+  </joint>
+  <link name="hole0304_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0304" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0304_link"/>
+    <origin xyz="0.64 -0.033 0.3495"  rpy="0.0 0.0 -2.522000769131806"/>
+  </joint>
+  <link name="hole0305_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0305" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0305_link"/>
+    <origin xyz="0.68 -0.033 0.3495"  rpy="0.0 0.0 -2.522000769131806"/>
+  </joint>
+  <link name="hole0306_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0306" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0306_link"/>
+    <origin xyz="0.72 -0.033 0.3495"  rpy="0.0 0.0 -2.522000769131806"/>
+  </joint>
+  <link name="hole0307_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0307" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0307_link"/>
+    <origin xyz="0.76 -0.033 0.3495"  rpy="0.0 0.0 -2.522000769131806"/>
+  </joint>
+  <link name="hole0308_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0308" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0308_link"/>
+    <origin xyz="0.8 -0.033 0.3495"  rpy="0.0 0.0 -2.522000769131806"/>
+  </joint>
+  <link name="hole0309_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0309" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0309_link"/>
+    <origin xyz="0.84 -0.033 0.3495"  rpy="0.0 0.0 -2.522000769131806"/>
+  </joint>
+  <link name="hole0310_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0310" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0310_link"/>
+    <origin xyz="0.88 -0.033 0.3495"  rpy="0.0 0.0 -2.522000769131806"/>
+  </joint>
+  <link name="hole0311_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0311" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0311_link"/>
+    <origin xyz="0.92 -0.033 0.3495"  rpy="0.0 0.0 -2.522000769131806"/>
+  </joint>
+  <link name="hole0312_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0312" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0312_link"/>
+    <origin xyz="0.96 -0.033 0.3495"  rpy="0.0 0.0 -2.522000769131806"/>
+  </joint>
+  <link name="hole0313_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0313" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0313_link"/>
+    <origin xyz="0.04 -0.051 0.327"  rpy="0.0 0.0 -1.9512781037296603"/>
+  </joint>
+  <link name="hole0314_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0314" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0314_link"/>
+    <origin xyz="0.08 -0.051 0.327"  rpy="0.0 0.0 -1.9512781037296603"/>
+  </joint>
+  <link name="hole0315_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0315" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0315_link"/>
+    <origin xyz="0.12 -0.051 0.327"  rpy="0.0 0.0 -1.9512781037296603"/>
+  </joint>
+  <link name="hole0316_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0316" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0316_link"/>
+    <origin xyz="0.16 -0.051 0.327"  rpy="0.0 0.0 -1.9512781037296603"/>
+  </joint>
+  <link name="hole0317_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0317" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0317_link"/>
+    <origin xyz="0.2 -0.051 0.327"  rpy="0.0 0.0 -1.9512781037296603"/>
+  </joint>
+  <link name="hole0318_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0318" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0318_link"/>
+    <origin xyz="0.24 -0.051 0.327"  rpy="0.0 0.0 -1.9512781037296603"/>
+  </joint>
+  <link name="hole0319_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0319" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0319_link"/>
+    <origin xyz="0.28 -0.051 0.327"  rpy="0.0 0.0 -1.9512781037296603"/>
+  </joint>
+  <link name="hole0320_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0320" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0320_link"/>
+    <origin xyz="0.32 -0.051 0.327"  rpy="0.0 0.0 -1.9512781037296603"/>
+  </joint>
+  <link name="hole0321_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0321" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0321_link"/>
+    <origin xyz="0.36 -0.051 0.327"  rpy="0.0 0.0 -1.9512781037296603"/>
+  </joint>
+  <link name="hole0322_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0322" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0322_link"/>
+    <origin xyz="0.4 -0.051 0.327"  rpy="0.0 0.0 -1.9512781037296603"/>
+  </joint>
+  <link name="hole0323_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0323" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0323_link"/>
+    <origin xyz="0.44 -0.051 0.327"  rpy="0.0 0.0 -1.9512781037296603"/>
+  </joint>
+  <link name="hole0324_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0324" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0324_link"/>
+    <origin xyz="0.48 -0.051 0.327"  rpy="0.0 0.0 -1.9512781037296603"/>
+  </joint>
+  <link name="hole0325_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0325" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0325_link"/>
+    <origin xyz="0.52 -0.051 0.327"  rpy="0.0 0.0 -1.9512781037296603"/>
+  </joint>
+  <link name="hole0326_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0326" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0326_link"/>
+    <origin xyz="0.56 -0.051 0.327"  rpy="0.0 0.0 -1.9512781037296603"/>
+  </joint>
+  <link name="hole0327_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0327" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0327_link"/>
+    <origin xyz="0.6 -0.051 0.327"  rpy="0.0 0.0 -1.9512781037296603"/>
+  </joint>
+  <link name="hole0328_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0328" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0328_link"/>
+    <origin xyz="0.64 -0.051 0.327"  rpy="0.0 0.0 -1.9512781037296603"/>
+  </joint>
+  <link name="hole0329_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0329" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0329_link"/>
+    <origin xyz="0.68 -0.051 0.327"  rpy="0.0 0.0 -1.9512781037296603"/>
+  </joint>
+  <link name="hole0330_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0330" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0330_link"/>
+    <origin xyz="0.72 -0.051 0.327"  rpy="0.0 0.0 -1.9512781037296603"/>
+  </joint>
+  <link name="hole0331_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0331" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0331_link"/>
+    <origin xyz="0.76 -0.051 0.327"  rpy="0.0 0.0 -1.9512781037296603"/>
+  </joint>
+  <link name="hole0332_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0332" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0332_link"/>
+    <origin xyz="0.8 -0.051 0.327"  rpy="0.0 0.0 -1.9512781037296603"/>
+  </joint>
+  <link name="hole0333_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0333" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0333_link"/>
+    <origin xyz="0.84 -0.051 0.327"  rpy="0.0 0.0 -1.9512781037296603"/>
+  </joint>
+  <link name="hole0334_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0334" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0334_link"/>
+    <origin xyz="0.88 -0.051 0.327"  rpy="0.0 0.0 -1.9512781037296603"/>
+  </joint>
+  <link name="hole0335_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0335" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0335_link"/>
+    <origin xyz="0.92 -0.051 0.327"  rpy="0.0 0.0 -1.9512781037296603"/>
+  </joint>
+  <link name="hole0336_link">
+    <visual>
+      <geometry>
+        \<sphere radius="0.005" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="to_hole0336" type="fixed">
+    <parent link="base_link"/>
+    <child link="hole0336_link"/>
+    <origin xyz="0.96 -0.051 0.327"  rpy="0.0 0.0 -1.9512781037296603"/>
+  </joint>
+</robot>
