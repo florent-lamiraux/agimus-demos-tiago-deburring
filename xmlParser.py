@@ -23,13 +23,13 @@ for t in root[1:]:
     task = dict()
     task["name"] = t.attrib["name"]
     task["pos"] = list(map(float, t[1].text.split()))
+    task["pos"][2]-=0.5
     task["rot"] = list(map(float, t[2].text.split()))
 
     r = np.array([np.array([1., 0., 0.]),
                   np.array([0, np.cos(np.pi*task["rot"][3]/180), -np.sin(np.pi*task["rot"][3]/180)]),
                   np.array([0,np.sin(np.pi*task["rot"][3]/180), np.cos(np.pi*task["rot"][3]/180)])])
     task["rpy"] = pinocchio.rpy.matrixToRpy(r)
-    # task["rpy"][2] -= 1.5707963267948966
     tasks.append(task)
 
 
