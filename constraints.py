@@ -119,12 +119,13 @@ def ConsGraphFactory(robot, ps, allHandles, partHandles,
     for handle in partHandles: # alignment
         addAlignmentConstrainttoEdge(ps, graph, allHandles, handle, tool_gripper)
         # extra edge for configuration generation
+        
         graph.createEdge(nodeFrom="tiago/gripper grasps driller/handle",
                          nodeTo="driller/drill_tip > " + handle + " | 0-0_pregrasp",
-                         name=handle+" | pregrasp generation",
+                         name="driller/drill_tip pregrasps "+handle,
                          weight=-1,
                          isInNode="tiago/gripper grasps driller/handle") # create the edge
-        graph.addConstraints(edge=handle+" | pregrasp generation",
+        graph.addConstraints(edge="driller/drill_tip pregrasps "+handle,
                              constraints=Constraints(numConstraints=["part/root_joint"])) # fix the table
     # HOME NODE
     graph.createNode('home', priority=1000)

@@ -245,10 +245,10 @@ robot.client.manipulation.robot.insertRobotSRDFModelFromString("", srdf_disable_
 #vf.loadObstacleModel ("package://gerard_bauzil/urdf/gerard_bauzil.urdf", "room")
 #vf.loadObstacleModel ("package://agimus_demos/urdf/P72-table.urdf", "table")
 
-try:
-    v = vf.createViewer()
-except:
-    print("Did not find viewer")
+# try:
+#     v = vf.createViewer()
+# except:
+#     print("Did not find viewer")
 
 joint_bounds = {}
 def setRobotJointBounds(which):

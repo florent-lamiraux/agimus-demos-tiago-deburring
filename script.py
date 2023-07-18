@@ -33,6 +33,8 @@ from hpp.corbaserver import wrap_delete as wd
 from hpp.corbaserver.manipulation import createContext, ProblemSolver, ConstraintGraph, Rule, Constraints, loadServerPlugin
 from hpp.gepetto.manipulation import ViewerFactory
 from hpp_idl.hpp import Error as HppError
+from hpp.corbaserver.task_sequencing import Client as SolverClient
+import pinocchio
 from agimus_demos import InStatePlanner
 import sys, argparse, numpy as np, time
 
@@ -66,24 +68,30 @@ class PartP72:
     srdfFilename = "package://agimus_demos/srdf/P72.srdf"
     rootJointType = "freeflyer"
 
+class Airfoil:
+    urdfFilename = "package://agimus_demos/tiago/deburring/urdf/airfoil.urdf"
+    srdfFilename = "package://agimus_demos/tiago/deburring/srdf/airfoil.srdf"
+    rootJointType = "freeflyer"
+
 # THE ROBOT
 robot = Robot('./tiago.urdf', args) # CREATE THE ROBOT
 robot.setNeutralPosition() # SET ITS NEUTRAL POSITION
 
 # PROBLEM SOLVER
+print("Loading model")
 ps = ProblemSolver(robot)
 ps.loadPlugin("manipulation-spline-gradient-based.so")
 
 # LOAD THE ROBOT INTO THE GUI
 vf = ViewerFactory(ps)
 vf.loadRobotModel (Driller, "driller")
-vf.loadRobotModel (PartP72, "part")
+# vf.loadRobotModel (PartP72, "part")
+vf.loadRobotModel (Airfoil, "part")
 
 robot.readSRDF() # LOAD SRDF DATA AND SET SOME JOINT BOUNDS
 robot.disableCollisions() # DISABLE COLLISIONS
 
 ### GENERATE VIRTUAL HANDLES
-print("generating virtual handles")
 # ps.robot.client.manipulation.robot.addGripper
 # ps.robot.client.manipulation.robot.addHandle
 
@@ -93,32 +101,71 @@ part_handles = part_handles = list(filter(lambda x: x.startswith("part/"), all_h
 holeCoords = robot.getHandlesCoords(part_handles)
 
 # CLUSTER THEM
-iso_c = 4
-iso_nc = 5
-iso_tn = 1
-iso_te = 1.
-iso_tc = .75
-iso_nt = 5
-iso_ns = 500
-from hpp.corbaserver.task_sequencing import Client as SolverClient
+iso_c = 4 # expected nb of clusters
+iso_nc = 5 # initial nb of clusters
+iso_tn = 1 # min nb of points per cluster
+iso_te = 1. # max variance
+iso_tc = .75 # min distance between centroids
+iso_nt = 5 # max merges per iteration
+iso_ns = 500 # max iterations
+iso_k = 100 # influence of the angle on the task distance
 loadServerPlugin("corbaserver", "task-sequencing.so")
 s = SolverClient()
-clusters = s.solver.testIsoData(holeCoords, len(holeCoords), len(holeCoords[0]), iso_c, iso_nc, iso_tn, iso_te, iso_tc, iso_nt, iso_ns)
+print("Clustering tasks")
+clusters = s.solver.testIsoData(holeCoords, len(holeCoords), len(holeCoords[0]), iso_c, iso_nc, iso_tn, iso_te, iso_tc, iso_nt, iso_ns, iso_k)
 
 # GET COORDINATES OF VIRTUAL ONES
-import pinocchio 
-virtualHandles = [c.centroid for c in clusters]
+virtualHandles = list()
+for c in clusters:
+    normQ = pinocchio.Quaternion(c.centroid[3], c.centroid[4], c.centroid[5], c.centroid[6]).normalized()
+    virtualHandles.append([c.centroid[0], c.centroid[1], c.centroid[2], normQ[0], normQ[1], normQ[2], normQ[3]])
+
+# PROJECT THEM ON THE MESH
+print("Projecting virtual handles")
+# virtualHandlesOnSurface = list()
+# p = 0
+# closest = -1
+# for vh in virtualHandles:
+#     dist = s.tools.distanceToMesh(vh, p, closest)
+
+# n = len(virtualHandles)
+# s.solver.create(n)
+# s.solver.setErrorThreshold(1e-6)
+# s.solver.setMaxIterations(30)
+# for i in range(n):
+#     s.solver.addConstraint('tiago/gripper grasps driller/handle', i)
+#     s.solver.addConstraint('part/root_joint', i)
+#     if i != 0:
+#         s.solver.addEqualityConstraint('tiago/root_joint', i, 0)
+
+# q0 = [robot.q0[i] for i in range(len(robot.q0))]
+# q0[:4] = [0, 1, 0, -1]
+# e1 = 'driller/drill_tip pregrasps part/handle_0004'
+# res, q1, err = graph.generateTargetConfig(e1, q0, q0)
+# assert(res)
+# e2 = 'driller/drill_tip pregrasps part/handle_0330'
+# q0[:4] = [-0.1, 1, 0, -1]
+# res, q2, err = graph.generateTargetConfig(e2, q0, q0)
+# assert(res)
+
+# s.solver.addConstraint('driller/drill_tip pregrasps part/handle_0004', 0)
+# s.solver.addConstraint('driller/drill_tip pregrasps part/handle_0330', 1)
+# q = q1 + q2
+# s.solver.setRightHandSideFromVector(q)
+# res, q3, err = s.solver.solve(q)
+# dist, closest = s.tools.distanceToMesh(q0, [0,0,0])
 
 # ADD THEM TO THE MODEL
-robot.addVirtualHandles(len(clusters), virtualHandles)
+robot.addVirtualHandles(len(clusters), virtualHandles) # to become virtualHandlesOnSurface
 
-# try:
-#     v = vf.createViewer()
-# except:
-#     print("Did not find viewer")
+try:
+    v = vf.createViewer()
+except:
+    print("Did not find viewer")
 
 
 ### SETTING A FEW VARIABLES AND PARAMETERS
+print("Setting some parameters")
 
 # SETTING JOINT BOUNDS
 robot.defineVariousJointBounds()
@@ -147,6 +194,7 @@ ljs, lock_arm, lock_head, look_at_gripper, tool_gripper = createConstraints(ps, 
 ### BUILDING THE CONSTRAINT GRAPH
 
 # ADDING VIRTUAL HANDLES
+print("Adding virtual handles")
 virtual_handles = []
 for hole in range(len(clusters)):
     part_handles.append("part/virtual_{}".format(str(hole)))
@@ -154,6 +202,7 @@ for hole in range(len(clusters)):
     virtual_handles.append("part/virtual_{}".format(str(hole)))
 
 # CONSTRAINT GRAPH FACTORY
+print("Building graph")
 graph = ConsGraphFactory(robot, ps, all_handles, part_handles,
                          ljs, lock_arm, lock_head, look_at_gripper, tool_gripper)
 # INITIALIZATION
@@ -164,6 +213,7 @@ graph.initialize()
 res, robot.q0, err = graph.generateTargetConfig('move_base', robot.q0, robot.q0)
 assert(res)
 # GRAPH VALIDATION
+print("Validating graph")
 ConsGraphValidation(ps, cgraph)
 
 
@@ -183,6 +233,35 @@ basePlanner = createBasePlanner(ps, graph, robot)
 basePlannerUsePrecomputedRoadmap = False
 if basePlannerUsePrecomputedRoadmap:
     getMobileBaseRoadmap(basePlanner)
+
+
+n = 2 # len(virtualHandles)
+s.solver.create(n)
+s.solver.setErrorThreshold(1e-6)
+s.solver.setMaxIterations(30)
+for i in range(n):
+    s.solver.addConstraint('tiago/gripper grasps driller/handle', i)
+    s.solver.addConstraint('part/root_joint', i)
+    if i != 0:
+        s.solver.addEqualityConstraint('tiago/root_joint', i, 0)
+
+q0 = [robot.q0[i] for i in range(len(robot.q0))]
+# q0[:4] = [0, 1, 0, -1]
+e1 = 'driller/drill_tip pregrasps part/handle_0004'
+res, q1, err = graph.generateTargetConfig(e1, q0, q0)
+assert(res)
+e2 = 'driller/drill_tip pregrasps part/handle_0330'
+q0[:4] = [-0.1, 1, 0, -1]
+res, q2, err = graph.generateTargetConfig(e2, q0, q0)
+assert(res)
+
+s.solver.addConstraint('driller/drill_tip pregrasps part/handle_0004', 0)
+s.solver.addConstraint('driller/drill_tip pregrasps part/handle_0330', 1)
+q = q1 + q2
+s.solver.setRightHandSideFromVector(q)
+res, q3, err = s.solver.solve(q)
+dist, closest = s.tools.distanceToMesh(q0, [0,0,0])
+
 
 
 
@@ -215,13 +294,13 @@ configListType = List[configType]
 def shootPregraspConfig(handle: str, restConfig: List[float]) -> configType:
     res = False
     tries = 0
-    while (not res) and (tries<100):
+    while (not res) and (tries<20):
         try: # get a config
             tries+=1
             if tries%10==0:
                 print("attempt ", tries)
             q = robot.shootRandomConfig()
-            res, q, err = graph.generateTargetConfig(handle+" | pregrasp generation", restConfig, q)
+            res, q, err = graph.generateTargetConfig("driller/drill_tip pregrasps "+handle, restConfig, q)
             if (res) and (robot.isConfigValid(q)[0] is False): # check it is collision-free
                 # print("config not valid")
                 res = False
@@ -243,14 +322,14 @@ def shootPregraspConfigs(handle: str, restConfig: List[float], nbConfigs: int, c
     for i in range(nbConfigs):
         configList.append(shootPregraspConfig(handle, restConfig))
 
-print("shooting configurations on virtual handles")
-configsOnVirtual = []
+print("Shooting configurations on virtual handles")
+configsOnVirtual = list()
 for handle in virtual_handles:
     # shootPregraspConfigs(handle, robot.q0, 10, configsOnVirtual)
     shootPregraspConfigs(handle, robot.q0, 2, configsOnVirtual)
 id = 0
 for config in configsOnVirtual:
-    config["name"] = "config_"+str(id)
+    config["name"] = "qOnVirtual_"+str(id)
     id+=1
 
 
@@ -265,7 +344,6 @@ for config in configsOnVirtual:
 # \rval whether handle can be reached from q
 def configReachesHandle(handle: str, q: List[float], qName: str, reachMatrix) -> None:
     try:
-        # res, qh, err = graph.generateTargetConfig(handle+" | pregrasp generation", q, q)
         res, qh, err = graph.generateTargetConfig("driller/drill_tip > "+handle+" | 0-0_01", q, q)
         if res and robot.isConfigValid(qh)[0]:
             # print("from  ", q, "  to  ", qh)
@@ -275,14 +353,17 @@ def configReachesHandle(handle: str, q: List[float], qName: str, reachMatrix) ->
     except:
         reachMatrix[handle][qName] = None
 
+print("Checking reachability")
 reachesHandle = dict()
 real_handles = list(filter(lambda x : not x.startswith("part/virtual"), part_handles))
 for handle in real_handles:
     reachesHandle[handle] = {}
     for config in configsOnVirtual:
-        configReachesHandle(handle, config["config"], config["name"], reachesHandle)
+        # configReachesHandle(handle, config["config"], config["name"], reachesHandle)
+        reachesHandle[handle][config["name"]] = None
 
 # STRUCTURING THE DATA
+print("Structuring all the data")
 configHandles = []
 handleConfigs = dict()
 configClusters = []
@@ -297,10 +378,69 @@ for h in real_handles:
     configClusters.append(handleConfigs[h])
 
 # MANAGING UNREACHED TASKS
+# get handles that are not reached yet
+unreached_handles = list()
 for h in range(len(configClusters)):
     if configClusters[h]==[]:
-        configHandles.append(shootPregraspConfig(real_handles[h], robot.q0))
-        configClusters[h].append(len(configHandles)-1)
+        unreached_handles.append(real_handles[h])
+# reach them with a new configuration
+print("Shooting configurations on unreached handles")
+configsOnUnreached = list()
+for handle in unreached_handles:
+    data = shootPregraspConfig(str(handle), robot.q0)
+    data["name"] = str(handle)
+    configsOnUnreached.append(data)
+# check if the new configurations reach other handles
+print("Checking reachability for new configurations")
+reachesHandle_bis = dict()
+handlesReached = [int(0) for _ in range(len(configsOnUnreached))]
+for handle in real_handles:
+    reachesHandle_bis[handle] = {}
+    for c in range(len(configsOnUnreached)):
+        config = configsOnUnreached[c]
+        configReachesHandle(handle, config["config"], config["name"], reachesHandle_bis)
+        if reachesHandle_bis[handle][config["name"]] is not None:
+            handlesReached[c]+=1
+# removing configurations that are not versatile enough
+print("Removing not useful enough configs")
+for _ in range (len(configsOnUnreached)//4):
+    toRemove = np.argmin(handlesReached)
+    handlesReached.pop(toRemove)
+    configsOnUnreached.pop(toRemove)
+# adding the obtained configurations to those already generated
+print("Structuring the new data")
+for h in range(len(real_handles)):
+    handle = real_handles[h]
+    for c in configsOnUnreached:
+        if reachesHandle_bis[handle][c["name"]] is not None:
+            nbConfig+=1
+            configHandles.append({"hole":handle, "q":reachesHandle_bis[handle][c["name"]]})
+            handleConfigs[handle].append(nbConfig)
+    configClusters[h] = handleConfigs[handle]
+from copy import deepcopy
+from math import nan
+clustersForDistances = deepcopy(configClusters)
+maxClusterSizeIdx = np.argmax([len(c) for c in clustersForDistances])
+maxClusterSize = len(clustersForDistances[maxClusterSizeIdx])
+for c in clustersForDistances:
+    while len(c)<maxClusterSize:
+        c.append(-1)
+
+
+# print("storing clusters and configurations")
+# f = open("/home/hvanoverlo/devel/clusters.txt", "w")
+# for task in configClusters:
+#     for config in task:
+#         f.write(str(config)+" ")
+#     f.write("\n")
+# f.close()
+f = open("/tmp/configurations.txt", "w")
+for config in configHandles:
+    for val in config['q']:
+        f.write(str(val)+" ")
+    f.write("\n")
+f.close()
+
 
 
 ### GTSP
@@ -315,20 +455,69 @@ jointSpeeds = list()
 for elt in jointSpeedsYAML:
     jointSpeeds.append(float(jointSpeedsYAML[elt]))
 
+print("Computing the distance matrix")
+armJoints = list(filter(lambda s:s.startswith("tiago/arm"), robot.jointNames))
+armIndices = list(map(lambda j:robot.rankInConfiguration[j], armJoints))
+armIndices.append(robot.rankInConfiguration['tiago/torso_lift_joint'])
+s.solver.setRobotArmIndices(int(np.min(armIndices)),int(np.max(armIndices)-np.min(armIndices)+1))
+# configs = [c['q'] for c in configHandles]
+# distances = s.solver.computeDistances(configs, configClusters, jointSpeeds, robot.q0)
+# distances = s.solver.computeDistances("/tmp/configurations.txt", clustersForDistances,
+#                                       jointSpeeds, robot.q0)
+distMatFile = s.solver.computeDistances("/tmp/configurations.txt", clustersForDistances,
+                                      jointSpeeds, robot.q0)
+distances = list()
+with open(distMatFile, 'r') as f:
+    distances = [[int(float(num)) for num in line.split(',')] for line in f]
+
 # ROUTING MODEL
 print("solving the first GTSP")
-data0 = create_data_model(configHandles, configClusters, jointSpeeds)
-sol0 = list()
-for c in configClusters:
-    sol0+=c
-# data1, sol1 = GTSPiteration(data0, sol0)
-gtspData, firstSol = firstGTSPround(configHandles, configClusters, jointSpeeds)
-print("second GTSP")
+# data0 = create_data_model_bis(configHandles, configClusters, jointSpeeds)
+# sol0 = list()
+# for c in configClusters:
+#     sol0+=c
+# # data1, sol1 = GTSPiteration(data0, sol0)
+# gtspData, firstSol = firstGTSPround(configHandles, configClusters, jointSpeeds, distances)
+gtspData, firstSol = firstGTSPround(distances)
+# print("second GTSP")
 gtspData2, secondSol = GTSPiteration(gtspData, firstSol)
-print("updating arc costs")
-updateGTSP(gtspData2, secondSol, configClusters, configHandles, armPlanner, basePlanner, graph, ps)
-# updateGTSP(data1, sol1, configClusters, configHandles, armPlanner, basePlanner, graph, ps)
+# print("updating arc costs")
+# updateGTSP(gtspData2, secondSol, configClusters, configHandles, armPlanner, basePlanner, graph, ps)
+# # updateGTSP(data1, sol1, configClusters, configHandles, armPlanner, basePlanner, graph, ps)
 
+
+# ### MANIPULATE SOLUTION
+
+def getGTSPsol(sol, clusters, configs, f):
+    # RETRIEVE GTSP ROUTE
+    print("retrieve gtsp sol from tsp one")
+    gtspSol = list()
+    clustersOrder = list()
+    idx = 0
+    clusId = nodeIsInCluster(sol[idx], clusters)
+    solValid = True
+    while solValid and len(gtspSol)<len(clusters):
+        if sol[idx+len(clusters[clusId])-1] in clusters[clusId]:
+            gtspSol.append(sol[idx])
+            clustersOrder.append(clusId)
+            idx = idx+len(clusters[clusId])
+            clusId = nodeIsInCluster(sol[idx], clusters)
+        else:
+            print("UNVALID SOLUTION")
+            solValid = False
+            return
+    if solValid:
+        gtspSol.append(gtspSol[0])
+        clustersOrder.append(clustersOrder[0])
+    # WRITE IT TO A FILE
+    for i in range(len(gtspSol)):
+        f.write(str(clustersOrder[i])+"\n")
+        line = "["
+        for v in configs[gtspSol[i]]['q']:
+            line+=str(v)
+            line+=", "
+        f.write(line+"]\n")
+    return gtspSol, clustersOrder
 
 
 
@@ -367,7 +556,7 @@ def generatePathToHandle(handle, paths, initRest, initPregrasp):
                 if tries%10==0:
                     print("attempt ", tries)
                 q2 = robot.shootRandomConfig()
-                res, q2, err = graph.generateTargetConfig(handle+" | pregrasp generation", initRest, q2)
+                res, q2, err = graph.generateTargetConfig("driller/drill_tip pregrasps "+handle, initRest, q2)
                 if res:
                     # get the base configuration of the pregrasp configuration
                     q1 = initRest[:]
@@ -403,7 +592,7 @@ def generateFirstPath(paths, handle, initRest):
             if tries%10==0:
                 print("attempt ", tries)
             q2 = robot.shootRandomConfig()
-            res, q2, err = graph.generateTargetConfig(handle+" | pregrasp generation", initRest, q2)
+            res, q2, err = graph.generateTargetConfig("driller/drill_tip pregrasps "+handle, initRest, q2)
             if res:
                 # get the base configuration of the pregrasp configuration
                 q1 = initRest[:]
