@@ -63,8 +63,7 @@ def createArmPlanner(ps, graph, robot):
 
 def createBasePlanner(ps, graph, robot):
     InStatePlanner.pathProjectorType = None
-    InStatePlanner.parameters['kPRM*/numberOfNodes'] = Any(TC_long, 500)
-    basePlanner = InStatePlanner (ps, graph)
+    basePlanner = InStatePlanner (ps, graph, {'kPRM*/numberOfNodes': Any(TC_long, 500)})
     basePlanner.plannerType = "kPRM*"
     basePlanner.maxIterPathPlanning = 100000
     basePlanner.optimizerTypes = list()

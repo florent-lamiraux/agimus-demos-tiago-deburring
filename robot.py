@@ -31,7 +31,6 @@
 from hpp.corbaserver import shrinkJointRange
 from hpp.corbaserver.manipulation import Robot as Parent
 from hpp.corbaserver.manipulation import loadServerPlugin, newProblem, CorbaClient
-from hpp import Transform
 
 class Robot(Parent):
     urdfString = ""
@@ -155,7 +154,7 @@ class Robot(Parent):
         srdf_disable_collisions += "</robot>"
         self.client.manipulation.robot.insertRobotSRDFModelFromString("", srdf_disable_collisions)
     def getHandlesCoords(self, partHandles):
-        return [Transform(self.getHandlePositionInJoint(handle)[1]).toTuple() for handle in partHandles]
+        return [self.getHandlePositionInJoint(handle)[1] for handle in partHandles]
     def addVirtualHandles(self, nbHandles, virtualHandlesCoords):
         for i in range(nbHandles):
             self.client.manipulation.robot.addHandle('part/base_link', "part/virtual_"+str(i),
