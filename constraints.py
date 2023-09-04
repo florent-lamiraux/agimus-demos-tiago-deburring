@@ -119,7 +119,6 @@ def ConsGraphFactory(robot, ps, allHandles, partHandles,
     for handle in partHandles: # alignment
         addAlignmentConstrainttoEdge(ps, graph, allHandles, handle, tool_gripper)
         # extra edge for configuration generation
-        
         graph.createEdge(nodeFrom="tiago/gripper grasps driller/handle",
                          nodeTo="driller/drill_tip > " + handle + " | 0-0_pregrasp",
                          name="driller/drill_tip pregrasps "+handle,
@@ -154,3 +153,26 @@ def ConsGraphValidation(ps, cgraph):
         print("Graph has only warnings")
     else:
         print("Graph *seems* valid.")
+
+def addExtraHandles(graph, indexOffset, nbNewHandles):
+    for i in range(indexOffset, indexOffset+nbNewHandles):
+        handle = 'part/virtual_'+str(i)
+        nodeName = 'driller/drill_tip > '+handle+' | 0-0_pregrasp'
+        edgeName = "driller/drill_tip pregrasps "+handle
+        # node
+        graph.createPreGrasp("driller/drill_tip pregrasps "+handle,
+                             'driller/drill_tip', handle)
+        graph.createNode(nodeName)
+        graph.addConstraints(node=nodeName,
+                             constraints=Constraints(
+                                 numConstraints=["driller/drill_tip pregrasps "+handle,
+                                                 "tiago/gripper grasps driller/handle"]))
+        # edge
+        graph.createEdge(nodeFrom="tiago/gripper grasps driller/handle",
+                         nodeTo=nodeName,
+                         name=edgeName,
+                         weight=-1,
+                         isInNode="tiago/gripper grasps driller/handle")
+        graph.addConstraints(edge=edgeName,
+                             constraints=Constraints(numConstraints=["part/root_joint"]))
+    graph.initialize()

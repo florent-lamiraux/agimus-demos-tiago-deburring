@@ -153,11 +153,16 @@ class Robot(Parent):
                 srdf_disable_collisions += srdf_disable_collisions_fmt.format(la[:la.rfind('_')], lb[:lb.rfind('_')])
         srdf_disable_collisions += "</robot>"
         self.client.manipulation.robot.insertRobotSRDFModelFromString("", srdf_disable_collisions)
-    def getHandlesCoords(self, partHandles):
-        return [self.getHandlePositionInJoint(handle)[1] for handle in partHandles]
-    def addVirtualHandles(self, nbHandles, virtualHandlesCoords):
-        for i in range(nbHandles):
+    def getHandlesCoords(self, handlesNames):
+        return [self.getHandlePositionInJoint(handle)[1] for handle in handlesNames]
+    def addVirtualHandles(self, virtualHandlesCoords):
+        for i in range(len(virtualHandlesCoords)):
             self.client.manipulation.robot.addHandle('part/base_link', "part/virtual_"+str(i),
+                                                     virtualHandlesCoords[i], 0.05,
+                                                     [True,True,True,False,True,True])
+    def addExtraVirtualHandles(self, idxOffset, virtualHandlesCoords):
+        for i in range(len(virtualHandlesCoords)):
+            self.client.manipulation.robot.addHandle('part/base_link', "part/virtual_"+str(i+idxOffset),
                                                      virtualHandlesCoords[i], 0.05,
                                                      [True,True,True,False,True,True])
     def defineVariousJointBounds(self):
