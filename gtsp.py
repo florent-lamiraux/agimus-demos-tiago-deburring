@@ -104,18 +104,13 @@ def get_route(solution, routing, manager):
     return route
     # return routes
 
-# def firstGTSPround(configurations, clusters, jointSpeeds, distances):
 def firstGTSPround(distances):
     print("    creating model")
     # ROUTING MODEL
     data = dict()
     data['distance_matrix'] = distances
-    # data['clusters'] = clusters
-    # data['configurations'] = configurations
-    # data['jointspeeds'] = jointSpeeds
     data['num_vehicles'] = 1
     data['depot'] = 0
-    # data = create_data_model(configurations, clusters, jointSpeeds)
     manager = pywrapcp.RoutingIndexManager(len(data['distance_matrix']),
                                            data['num_vehicles'], data['depot'])
     routing = pywrapcp.RoutingModel(manager)
@@ -126,41 +121,6 @@ def firstGTSPround(distances):
         from_node = manager.IndexToNode(from_index)
         to_node = manager.IndexToNode(to_index)
         return data['distance_matrix'][from_node][to_node]
-    # # For online distance computation
-    # def distance_callback(from_index, to_index):
-    #     # GET THE CORRECT INDICES
-    #     from_node = manager.IndexToNode(from_index)
-    #     to_node = manager.IndexToNode(to_index)
-    #     c_from = 0
-    #     while from_node not in data['clusters'][c_from]:
-    #         c_from+=1
-    #     # should have c_from <= len(data['clusters'])
-    #     # if we are on an arc inside a cluster
-    #     if to_node in data['clusters'][c_from]:
-    #         fromIdx = data['clusters'][c_from].index(from_node)
-    #         toIdx = data['clusters'][c_from].index(to_node)
-    #         if fromIdx < len(data['clusters'][c_from])-1:
-    #             if toIdx==fromIdx+1:
-    #                 return int(0)
-    #             else:
-    #                 return int(1e12)
-    #         else:
-    #             if toIdx==0:
-    #                 return int(0)
-    #             else:
-    #                 return int(1e12)
-    #     # if we are on an arc leaving a cluster
-    #     fromIdx = data['clusters'][c_from].index(from_node)
-    #     if fromIdx < len(data['clusters'][c_from])-1:
-    #         fromIdx += 1
-    #     else:
-    #         fromIdx = 0
-    #     from_node = data['clusters'][c_from][fromIdx]
-    #     # COMPUTE THE DISTANCE
-    #     dist = configDist(data['configurations'][from_node]["q"],
-    #                       data['configurations'][to_node]["q"],
-    #                       data['jointspeeds'])
-    #     return int(100000*dist)
     transit_callback_index = routing.RegisterTransitCallback(distance_callback)
     routing.SetArcCostEvaluatorOfAllVehicles(transit_callback_index)
     # SEARCH PARAMETERS
@@ -195,44 +155,6 @@ def GTSPiteration(data, initSol):
         to_node = manager.IndexToNode(to_index)
         return data['distance_matrix'][from_node][to_node]
     transit_callback_index = routing.RegisterTransitCallback(distance_callback)
-    # # For online distance computation
-    # manager = pywrapcp.RoutingIndexManager(len(initSol),
-    #                                        data['num_vehicles'], data['depot'])
-    # routing = pywrapcp.RoutingModel(manager)
-    # def distance_callback(from_index, to_index):
-    #     # GET THE CORRECT INDICES
-    #     from_node = manager.IndexToNode(from_index)
-    #     to_node = manager.IndexToNode(to_index)
-    #     c_from = 0
-    #     while from_node not in data['clusters'][c_from]:
-    #         c_from+=1
-    #     # should have c_from <= len(data['clusters'])
-    #     # if we are on an arc inside a cluster
-    #     if to_node in data['clusters'][c_from]:
-    #         fromIdx = data['clusters'][c_from].index(from_node)
-    #         toIdx = data['clusters'][c_from].index(to_node)
-    #         if fromIdx < len(data['clusters'][c_from])-1:
-    #             if toIdx==fromIdx+1:
-    #                 return int(0)
-    #             else:
-    #                 return int(1e12)
-    #         else:
-    #             if toIdx==0:
-    #                 return int(0)
-    #             else:
-    #                 return int(1e12)
-    #     # if we are on an arc leaving a cluster
-    #     fromIdx = data['clusters'][c_from].index(from_node)
-    #     if fromIdx < len(data['clusters'][c_from])-1:
-    #         fromIdx += 1
-    #     else:
-    #         fromIdx = 0
-    #     from_node = data['clusters'][c_from][fromIdx]
-    #     # COMPUTE THE DISTANCE
-    #     dist = configDist(data['configurations'][from_node]["q"],
-    #                       data['configurations'][to_node]["q"],
-    #                       data['jointspeeds'])
-    #     return int(100000*dist)
     transit_callback_index = routing.RegisterTransitCallback(distance_callback)
     routing.SetArcCostEvaluatorOfAllVehicles(transit_callback_index)
     # SEARCH PARAMETERS
@@ -240,7 +162,7 @@ def GTSPiteration(data, initSol):
     search_parameters.local_search_metaheuristic = (
         routing_enums_pb2.LocalSearchMetaheuristic.GUIDED_LOCAL_SEARCH)
     # GREEDY_DESCENT, GUIDED_LOCAL_SEARCH
-    search_parameters.time_limit.seconds = 30
+    search_parameters.time_limit.seconds = 10
     search_parameters.log_search = False
     routing.CloseModelWithParameters(search_parameters)
     initial_solution = routing.ReadAssignmentFromRoutes([initSol], True) # outputs some warning
