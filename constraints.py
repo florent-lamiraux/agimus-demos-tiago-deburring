@@ -34,6 +34,14 @@ from hpp.corbaserver.manipulation import ConstraintGraphFactory, ConstraintGraph
 
 
 def lockJoint(robot, ps, jname, cname=None, constantRhs=True):
+    """
+    \param robot instance of the Robot class (c.f. robot.py)  containing the model of the robot
+    \param ps instance of the ProblemSolver class
+    \param jname string of the name of the joint to lock
+    \param cname string of the name of the constraint corresponding to the locked joint
+    \param constantRhs boolean
+    \retval cname the constraint for the locked joint
+    """
     if cname is None:
         cname = jname
     s = robot.rankInConfiguration[jname]
@@ -42,14 +50,18 @@ def lockJoint(robot, ps, jname, cname=None, constantRhs=True):
     ps.setConstantRightHandSide(cname, constantRhs)
     return cname
 
-# \param ps ProblemSolver instance,
-# \param handle name of the handle: should be "part/handle_i" where i is an
-#        integer,
-# \param graph constraint graph
-def addAlignmentConstrainttoEdge(ps, graph, allHandles, handle, tool_gripper):
+def addAlignmentConstrainttoEdge(ps, graph, allHandles, handle, toolGripper):
+    """
+    \param ps ProblemSolver instance
+    \param graph ConsGraphFactory instance
+    \param allHandles list of all handles
+    \param handle string of the name of the handle to align (of the form "part/handle_i")
+    \param toolGripper string of the name of the node of the gripper of the tool
+    adds the constraint aligning the tool with the handle
+    """
     #recover id of handle
     handleId = allHandles.index(handle)
-    J1, gripperPose = ps.robot.getGripperPositionInJoint(tool_gripper)
+    J1, gripperPose = ps.robot.getGripperPositionInJoint(toolGripper)
     J2, handlePose = ps.robot.getHandlePositionInJoint(handle)
     T1 = Transform(gripperPose)
     T2 = Transform(handlePose)
@@ -58,14 +70,23 @@ def addAlignmentConstrainttoEdge(ps, graph, allHandles, handle, tool_gripper):
         (constraintName, J1, J2, T1.toTuple(), T2.toTuple(),
          [False, True, True, False, False, False])
     # Set constraint
-    edgeName = tool_gripper + ' > ' + handle + ' | 0-0_12'
+    edgeName = toolGripper + ' > ' + handle + ' | 0-0_12'
     graph.addConstraints(edge = edgeName, constraints = \
                          Constraints(numConstraints=[constraintName]))
-    edgeName = tool_gripper + ' < ' + handle + ' | 0-0:1-{}_21'.format(handleId)
+    edgeName = toolGripper + ' < ' + handle + ' | 0-0:1-{}_21'.format(handleId)
     graph.addConstraints(edge = edgeName, constraints = \
                          Constraints(numConstraints=[constraintName]))
 
 def createConstraints(ps, robot):
+    """
+    \param ps ProblemSolver instance
+    \param robot Robot instance (c.f. robot.py)
+    \retval ljs list of all joints
+    \retval lock_arm constraint locking the arm
+    \retval lock_head constraint locking the head
+    \retval look_at_gripper constraint forcing the robot to look at the gripper
+    \retval toolGripper string of the name of the gripper at the end of the driller in the model
+    """
     # joint list
     ljs = list()
     ps.createLockedJoint("tiago_base", "tiago/root_joint", [0,0,1,0])
@@ -83,15 +104,27 @@ def createConstraints(ps, robot):
                   if n.startswith("tiago/head")]
     # "LOOK AT GRIPPER"
     # for (X,Y,Z) the position of the gripper in the camera frame, (X, Y) = 0 and Z >= 0
-    tool_gripper = "driller/drill_tip"
-    ps.createPositionConstraint("look_at_gripper", "tiago/xtion_rgb_optical_frame", tool_gripper,
+    toolGripper = "driller/drill_tip"
+    ps.createPositionConstraint("look_at_gripper", "tiago/xtion_rgb_optical_frame", toolGripper,
                                 (0,0,0), (0,0,0), (True,True,True))
     look_at_gripper = ps.hppcorba.problem.getConstraint("look_at_gripper")
     look_at_gripper.setComparisonType([hpp_idl.hpp.EqualToZero,hpp_idl.hpp.EqualToZero,hpp_idl.hpp.Superior])
-    return ljs, lock_arm, lock_head, look_at_gripper, tool_gripper
+    return ljs, lock_arm, lock_head, look_at_gripper, toolGripper
 
 def ConsGraphFactory(robot, ps, allHandles, partHandles,
-                     ljs, lock_arm, lock_head, look_at_gripper, tool_gripper):
+                     ljs, lock_arm, lock_head, look_at_gripper, toolGripper):
+    """
+    \param robot Robot instance (c.f. robot.py)
+    \param ps ProblemSolver instance
+    \param allHandles list of all the handles
+    \param partHandles list of the handles on the part
+    \param ljs list of all joints
+    \param lock_arm constraint locking the arm
+    \param lock_head constraint locking the head
+    \param look_at_gripper constraint forcing the robot to look at the gripper
+    \param toolGripper string of the name of the gripper at the end of the driller in the model
+    \retval graph ConstraintGraph instance i.e. the constraint graph
+    """
     graph = ConstraintGraph(robot, 'graph')
     factory = ConstraintGraphFactory(graph)
     factory.setGrippers([ "tiago/gripper", "driller/drill_tip", ])
@@ -117,7 +150,7 @@ def ConsGraphFactory(robot, ps, allHandles, partHandles,
         graph.addConstraints(edge=e,
                              constraints=Constraints(numConstraints=["tiago_base"]))
     for handle in partHandles: # alignment
-        addAlignmentConstrainttoEdge(ps, graph, allHandles, handle, tool_gripper)
+        addAlignmentConstrainttoEdge(ps, graph, allHandles, handle, toolGripper)
         # extra edge for configuration generation
         graph.createEdge(nodeFrom="tiago/gripper grasps driller/handle",
                          nodeTo="driller/drill_tip > " + handle + " | 0-0_pregrasp",
@@ -142,6 +175,11 @@ def ConsGraphFactory(robot, ps, allHandles, partHandles,
     return graph
 
 def ConsGraphValidation(ps, cgraph):
+    """
+    \param ps ProblemSolver instance
+    \param cgraph corba client of the constraint graph
+    checks if the constraint graph is valid in order to validate it
+    """
     graphValidation = ps.client.manipulation.problem.createGraphValidation()
     graphValidation.validate(cgraph)
     if graphValidation.hasErrors():
@@ -155,6 +193,13 @@ def ConsGraphValidation(ps, cgraph):
         print("Graph *seems* valid.")
 
 def addExtraHandles(graph, indexOffset, nbNewHandles):
+    """
+    \param graph ConstraintGraph instance
+    \param indexOffset int corresponding to the nb of handles already in the model
+    \param nbNewHandles int corresponding to the number of handles to add
+    adds nbNewHandles to the constraint graph, with the necessary constraints
+    initializes the graph again when the addition is completed
+    """
     for i in range(indexOffset, indexOffset+nbNewHandles):
         handle = 'part/virtual_'+str(i)
         nodeName = 'driller/drill_tip > '+handle+' | 0-0_pregrasp'
