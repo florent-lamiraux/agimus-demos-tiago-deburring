@@ -52,6 +52,9 @@ class Robot(Parent):
         self.loop_free = 'Loop | 0-0'
         pass
     def setNeutralPosition(self):
+        """
+        defines the neutral configuration of the robot
+        """
         crobot = self.hppcorba.problem.getProblem().robot()
         self.qneutral = crobot.neutralConfiguration()
         self.qneutral[self.rankInConfiguration['tiago/hand_thumb_abd_joint']] = 1.5707
@@ -72,12 +75,10 @@ class Robot(Parent):
             'tiago/wheel_left_joint',
             'tiago/suspension_right_joint',
             'tiago/wheel_right_joint',
-
             # Comment this 3 joints otherwise sot is not happy
             #'tiago/hand_index_joint',
             #'tiago/hand_mrl_joint',
             #'tiago/hand_thumb_joint',
-
             'tiago/hand_index_abd_joint',
             'tiago/hand_index_virtual_1_joint',
             'tiago/hand_index_flex_1_joint',
@@ -115,6 +116,9 @@ class Robot(Parent):
         crobot.removeJoints(removedJoints, self.qneutral)
         del crobot
     def readSRDF(self):
+        """
+        reads the srdf files required to define the model
+        """
         self.insertRobotSRDFModel("tiago", "package://tiago_data/srdf/tiago.srdf")
         self.insertRobotSRDFModel("tiago", "package://tiago_data/srdf/pal_hey5_gripper.srdf")
         self.setJointBounds('tiago/root_joint', [-3, 3, -3, 3])
@@ -154,18 +158,34 @@ class Robot(Parent):
         srdf_disable_collisions += "</robot>"
         self.client.manipulation.robot.insertRobotSRDFModelFromString("", srdf_disable_collisions)
     def getHandlesCoords(self, handlesNames):
+        """
+        \param handlesNames list of names of handles
+        \retval list of the coordinates of the handles in handlesNames
+        """
         return [self.getHandlePositionInJoint(handle)[1] for handle in handlesNames]
     def addVirtualHandles(self, virtualHandlesCoords):
+        """
+        \param virtualHandlesCoords list of lists with the coordinates of the virtual handles
+        adds the virtual handles to the model
+        """
         for i in range(len(virtualHandlesCoords)):
             self.client.manipulation.robot.addHandle('part/base_link', "part/virtual_"+str(i),
                                                      virtualHandlesCoords[i], 0.05,
                                                      [True,True,True,False,True,True])
     def addExtraVirtualHandles(self, idxOffset, virtualHandlesCoords):
+        """
+        \param virtualHandlesCoords list of lists with the coordinates of the virtual handles
+        \param idxOffset int corresponding to the nb of virtual handles already in the model
+        adds the virtual handles to the model
+        """
         for i in range(len(virtualHandlesCoords)):
             self.client.manipulation.robot.addHandle('part/base_link', "part/virtual_"+str(i+idxOffset),
                                                      virtualHandlesCoords[i], 0.05,
                                                      [True,True,True,False,True,True])
     def defineVariousJointBounds(self):
+        """
+        defines bounds for certain joints
+        """
         self.joint_bounds = {}
         jointsToShrink = list(filter(lambda jn:jn.startswith("tiago/torso") or
                              jn.startswith("tiago/arm") or jn.startswith("tiago/head"),
@@ -180,7 +200,6 @@ class Robot(Parent):
     def setStartingPosition(self):
         self.q0 = self.getCurrentConfig()
         self.q0[:4] = [0, -0.9, 0, 1]
-        #self.q0[self.rankInConfiguration['tiago/torso_lift_joint']] = 0.15
         self.q0[self.rankInConfiguration['tiago/torso_lift_joint']] = 0.34
         self.q0[self.rankInConfiguration['tiago/arm_1_joint']] = 0.10
         self.q0[self.rankInConfiguration['tiago/arm_2_joint']] = -1.47
