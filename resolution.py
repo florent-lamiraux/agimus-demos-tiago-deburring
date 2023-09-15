@@ -37,8 +37,16 @@ from agimus_demos import InStatePlanner
 
 
 def createArmPlanner(ps, graph, robot):
+    """
+    \param ps ProblemSolver instance
+    \param graph ConstraintGraph instance (c.f. constraints.py)
+    \param robot Robot instance (c.f. robot.py)
+    \retval armPlanner InStatePlanner instance for the planning of arm motions
+    """
+    # create the instance
     armPlanner = InStatePlanner (ps, graph)
     armPlanner.setEdge(robot.loop_free)
+    # set various parameters
     #armPlanner.optimizerTypes = [ "SplineGradientBased_bezier3", ]
     armPlanner.optimizerTypes = [ ]
     armPlanner.cproblem.setParameter("SimpleTimeParameterization/safety",
@@ -53,6 +61,7 @@ def createArmPlanner(ps, graph, robot):
     bodies = ("tiago/torso_fixed_link_0", "tiago/base_link_0")
     cfgVal = armPlanner.cproblem.getConfigValidations()
     pathVal = armPlanner.cproblem.getPathValidation()
+    # set security margins between bodies
     for _, la, lb, _, _ in zip(*robot.distancesToCollision()):
         if la in bodies or lb in bodies:
             cfgVal.setSecurityMarginBetweenBodies(la, lb, 0.07)
@@ -62,29 +71,41 @@ def createArmPlanner(ps, graph, robot):
     return armPlanner
 
 def createBasePlanner(ps, graph, robot):
+    """
+    \param ps ProblemSolver instance
+    \param graph ConstraintGraph instance (c.f. constraints.py)
+    \param robot Robot instance (c.f. robot.py)
+    \retval basePlanner InStatePlanner instance for the planning of base motions
+    """
+    # create the instance
     InStatePlanner.pathProjectorType = None
     basePlanner = InStatePlanner (ps, graph, {'kPRM*/numberOfNodes': Any(TC_long, 500)})
+    # set various parameters
     basePlanner.plannerType = "kPRM*"
     basePlanner.maxIterPathPlanning = 100000
     basePlanner.optimizerTypes = list()
     basePlanner.setEdge("move_base")
     basePlanner.setReedsAndSheppSteeringMethod()
-    # security margins
+    # set security margins
     smBase = security_margins.SecurityMargins(robot.jointNames)
     margin = 0.1
     for i in [ 0, smBase.jid("part/root_joint") ]:
         smBase.margins[i,:] = margin
         smBase.margins[:,i] = margin
     basePlanner.cproblem.setSecurityMargins(smBase.margins.tolist())
-    # empty roadmap
+    # empty the roadmap
     basePlanner.createEmptyRoadmap()
     return basePlanner
 
-def getMobileBaseRoadmap(basePlanner):
-    roadmap_file = getcwd() + "/roadmap-hpp.bin"
-    if path.exists(roadmap_file):
-        print("Reading mobile base roadmap", roadmap_file)
-        basePlanner.readRoadmap(roadmap_file)
+def getMobileBaseRoadmap(basePlanner, roadmapFile):
+    """
+    \param basePlanner InStatePlanner instance
+    \param roadmapFile string of the location of the file with the roadmap
+    retrieves a roadmap from roadmapFile
+    """
+    if path.exists(roadmapFile):
+        print("Reading mobile base roadmap", roadmapFile)
+        basePlanner.readRoadmap(roadmapFile)
     else:
         print("Building mobile base roadmap")
         try:
@@ -94,5 +115,5 @@ def getMobileBaseRoadmap(basePlanner):
             #basePlanner.cproblem.setSecurityMargins(sm.margins.tolist())
         except HppError as e:
             print(e)
-        print("Writing mobile base roadmap", roadmap_file)
-        basePlanner.writeRoadmap(roadmap_file)
+        print("Writing mobile base roadmap", roadmapFile)
+        basePlanner.writeRoadmap(roadmapFile)
