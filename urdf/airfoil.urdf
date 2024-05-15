@@ -4,7 +4,7 @@
     <visual>
       <origin xyz="0 0 -0.5" rpy="0 0 0" />
       <geometry>
-        <mesh filename="/home/hvanoverlo/devel/DensoAirfoil/objects/meshes/wing.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://agimus_demos/tiago/deburring/meshes/wing.stl" scale="0.001 0.001 0.001"/>
       </geometry>
        <material name="Grey">
          <color rgba="0.6 0.6 0.6 1.0"/>
@@ -13,7 +13,7 @@
     <collision>
       <origin xyz="0 0 -0.5" rpy="0 0 0" />
       <geometry>
-        <mesh filename="/home/hvanoverlo/devel/DensoAirfoil/objects/meshes/wing.stl"  scale="0.001 0.001 0.001"/>
+        <mesh filename="package://agimus_demos/tiago/deburring/meshes/wing.stl"  scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
     <inertial>
